@@ -73,7 +73,7 @@ export default function PetunjukPage() {
           <motion.div 
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#6B4624] px-8 md:px-16 py-3 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-xl mx-auto mt-2 md:mt-0"
+            className="bg-[#6B4624] px-8 md:px-16 py-3 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-xl mx-auto mt-16 md:mt-0"
           >
             <motion.h1 
               animate={{ scale: [1, 1.05, 1] }}
@@ -93,7 +93,7 @@ export default function PetunjukPage() {
           transition={{ delay: 0.2 }}
           className="bg-[#F8F9FA]/95 md:bg-white/95 backdrop-blur-sm border-2 border-white/50 w-full max-w-5xl rounded-[30px] p-6 md:p-10 shadow-2xl flex-1 overflow-y-auto mb-10 z-20"
         >
-          <ul className="font-canva list-disc pl-5 md:pl-8 space-y-3 md:space-y-4 text-[#2C3E50] font-bold text-sm md:text-lg lg:text-xl leading-relaxed">
+          <ul className="font-canva list-disc list-inside md:list-outside pl-0 md:pl-8 text-center md:text-left space-y-3 md:space-y-4 text-[#2C3E50] font-bold text-sm md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto">
             <li>Halo anak-anak!, Multimedia ini berisi materi teks deskripsi kelas V semester 2. Di sini kamu akan belajar sambil bermain menjadi detektif.</li>
             <li>Bacalah setiap teks deskripsi dengan teliti dan pelan-pelan, yah!.</li>
             <li>Perhatikan kata-kata yang menjelaskan bentuk, warna, ukuran, sifat, dan keadaan suatu objek.</li>

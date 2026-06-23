@@ -85,8 +85,8 @@ export default function TeacherRecapPage() {
             <ArrowLeft size={28} strokeWidth={3} />
           </button>
 
-          <h1 className="font-tropika text-2xl md:text-4xl text-white tracking-widest text-center flex items-center gap-3">
-            <FileText size={36} /> REKAP NILAI GURU
+          <h1 className="font-tropika text-lg sm:text-2xl md:text-4xl text-white tracking-widest text-center flex items-center justify-center gap-2">
+            <FileText className="w-6 h-6 md:w-9 md:h-9" /> REKAP NILAI GURU
           </h1>
 
           <div className="w-12 h-12 md:w-14 md:h-14" /> {/* Spacer */}

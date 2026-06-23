@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Info, Lightbulb, Copy, ClipboardList } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Info, Lightbulb, Copy, ClipboardList, Menu, X } from 'lucide-react';
 import museumImg from '../assets/images/museum.png';
 import leftTreeImg from '../assets/images/left_tree.png';
 import rightTreeImg from '../assets/images/right_tree.png';
@@ -12,6 +12,7 @@ import fanImg from '../assets/images/fan.png';
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const menuItems = [
     { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: <Info size={32} className="text-[#654321]" />, bgWhite: true },
@@ -30,6 +31,15 @@ export default function LandingPage() {
         title="Rekap Nilai Guru"
       >
         <ClipboardList size={20} className="text-white" />
+      </button>
+      
+      {/* Tombol Hamburger Menu (Mobile Only) */}
+      <button 
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="absolute top-4 right-4 z-[100] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#F68026] text-[#FFD84D] hover:bg-[#d96a1a] rounded-full shadow-lg border-2 border-white/20 active:scale-95 transition-all md:hidden cursor-pointer"
+        title="Menu"
+      >
+        {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
       
       {/* 1. MUSEUM (Tengah Bawah) */}
@@ -69,7 +79,7 @@ export default function LandingPage() {
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-        className="absolute -bottom-5 md:-bottom-10 left-[2%] md:left-[8%] w-[60%] md:w-[40%] lg:w-[35%] max-w-[450px] z-30 pointer-events-none"
+        className="absolute -bottom-5 md:-bottom-10 left-[2%] md:left-[8%] w-[50%] md:w-[40%] lg:w-[35%] max-w-[450px] z-30 pointer-events-none"
       >
         {/* Baling-baling ditempel langsung ke karakter agar responsif dan selalu di atas topi */}
         <motion.img
@@ -104,7 +114,7 @@ export default function LandingPage() {
         animate={{ scale: 1 }}
         transition={{ delay: 0.6, type: "spring", bounce: 0.6 }}
         onClick={() => navigate('/group-setup')}
-        className="absolute bottom-[20%] md:bottom-[25%] left-0 right-0 mx-auto w-max z-50 cursor-pointer outline-none group"
+        className="absolute top-[42%] md:top-[48%] left-0 right-0 mx-auto w-max z-50 cursor-pointer outline-none group"
       >
         <motion.img 
           src={buttonPlayImg} 
@@ -115,12 +125,12 @@ export default function LandingPage() {
         />
       </motion.button>
 
-      {/* 5. MENU SAMPING KANAN (Proporsional di tengah atas) */}
+      {/* 5. MENU SAMPING KANAN (Proporsional di tengah atas - Desktop Only) */}
       <motion.div 
         initial={{ x: 300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="absolute right-0 top-[10%] md:top-[15%] lg:top-[20%] z-50 flex flex-col items-end gap-4 md:gap-5 lg:gap-6 w-52 md:w-64 lg:w-72 pr-0"
+        className="absolute right-0 top-[10%] md:top-[15%] lg:top-[20%] z-50 hidden md:flex flex-col items-end gap-3 md:gap-5 lg:gap-6 w-44 sm:w-52 md:w-64 lg:w-72 pr-0"
       >
         {menuItems.map((item, index) => (
           <motion.button 
@@ -131,22 +141,78 @@ export default function LandingPage() {
             className="group flex flex-col items-end w-full cursor-pointer transform hover:-translate-x-3 transition-transform active:scale-95 origin-right"
           >
             {/* Teks Label */}
-            <div className="bg-[#4a2e1b]/95 text-white font-bold text-[10px] md:text-xs lg:text-sm tracking-wider px-4 py-1.5 md:py-2 rounded-l-full mb-0 border-r-0 mr-3 md:mr-4 shadow-xl z-10">
+            <div className="bg-[#4a2e1b]/95 text-white font-bold text-[8px] sm:text-[10px] md:text-xs lg:text-sm tracking-wider px-3 sm:px-4 py-1.5 md:py-2 rounded-l-full mb-0 border-r-0 mr-2 sm:mr-3 md:mr-4 shadow-xl z-10">
               {item.title}
             </div>
             
             {/* Tombol Panah Kayu */}
-            <div className="relative w-full h-14 md:h-16 lg:h-20 flex justify-end -mt-1 md:-mt-2">
+            <div className="relative w-full h-10 sm:h-14 md:h-16 lg:h-20 flex justify-end -mt-1 md:-mt-2">
               <div className="bg-[#654321] w-[85%] lg:w-[90%] h-full flex items-center justify-center clip-path-arrow shadow-2xl relative border-y-[3px] border-l-[3px] border-[#4a2e1b]">
                 <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
-                <div className={`relative z-10 w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center mr-6 md:mr-8 ${item.bgWhite ? 'bg-white rounded-full shadow-inner' : ''}`}>
-                  {React.cloneElement(item.icon, { size: item.bgWhite ? 20 : 26 })}
+                <div className={`relative z-10 w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center mr-4 sm:mr-6 md:mr-8 ${item.bgWhite ? 'bg-white rounded-full shadow-inner' : ''}`}>
+                  {React.cloneElement(item.icon, { 
+                    size: undefined, 
+                    className: `${item.icon.props.className} w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7`
+                  })}
                 </div>
               </div>
             </div>
           </motion.button>
         ))}
       </motion.div>
+
+      {/* Mobile Hamburger Menu Drawer */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Background Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 z-[80] md:hidden"
+            />
+
+            {/* Slide-out Menu Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-[260px] sm:w-[320px] bg-[#6B4624] border-l-8 border-[#4A2E1B] p-6 pt-20 z-[90] md:hidden shadow-2xl flex flex-col gap-6"
+            >
+              <div className="text-center font-tropika text-2xl text-[#FFD84D] tracking-widest mb-4" style={{ WebkitTextStroke: '1px #4A2E1B' }}>
+                MENU UTAMA
+              </div>
+              
+              <div className="flex flex-col gap-4">
+                {menuItems.map((item, index) => (
+                  <motion.button 
+                    key={index}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.08 }}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      navigate(item.path);
+                    }}
+                    className="flex items-center gap-4 bg-white/10 hover:bg-white/25 hover:scale-[1.02] border border-white/10 rounded-2xl p-4 text-white font-bold text-sm tracking-wide text-left cursor-pointer active:scale-95 transition-all w-full"
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${item.bgWhite ? 'bg-white text-[#654321]' : 'bg-[#F68026] text-white'}`}>
+                      {React.cloneElement(item.icon, { 
+                        size: undefined, 
+                        className: `w-5 h-5 ${item.bgWhite ? 'text-[#654321]' : 'text-white'}` 
+                      })}
+                    </div>
+                    <span className="flex-1 text-xs sm:text-sm">{item.title}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* CSS untuk bentuk panah */}
       <style dangerouslySetInnerHTML={{__html: `

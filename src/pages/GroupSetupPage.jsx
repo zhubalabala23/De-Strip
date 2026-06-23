@@ -189,7 +189,7 @@ export default function GroupSetupPage() {
           <motion.div 
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#6B4624] px-8 md:px-16 py-3 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-xl mx-auto mt-2 md:mt-0"
+            className="bg-[#6B4624] px-8 md:px-16 py-3 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-xl mx-auto mt-16 md:mt-0"
           >
             <motion.h1 
               animate={{ scale: [1, 1.05, 1] }}
@@ -231,7 +231,7 @@ export default function GroupSetupPage() {
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-end border-b-2 border-gray-100 pb-2">
                 <label className="font-semibold text-sm text-gray-800">Anggota Kelompok (Maks. 5 Orang)</label>
-                <span className="w-24 text-center text-xs font-bold text-gray-500 mr-2">Nomor Absen</span>
+                <span className="w-20 text-center text-xs font-bold text-gray-500 mr-2">Nomor Absen</span>
               </div>
 
               {members.map((member, index) => (
@@ -251,7 +251,7 @@ export default function GroupSetupPage() {
                     value={member.absen}
                     onChange={(e) => handleMemberChange(index, 'absen', e.target.value)}
                     placeholder="No. Absen"
-                    className="w-24 px-3 py-2 rounded-lg border border-gray-200 focus:border-detectivePrimary outline-none text-sm"
+                    className="w-20 px-3 py-2 rounded-lg border border-gray-200 focus:border-detectivePrimary outline-none text-sm"
                   />
                 </div>
               ))}

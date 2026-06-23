@@ -90,7 +90,7 @@ export default function RefleksiPage() {
           <motion.div 
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#6B4624] px-4 py-3 md:px-12 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl mx-auto"
+            className="bg-[#6B4624] px-4 py-3 md:px-12 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl mx-auto mt-16 md:mt-0"
           >
             <motion.h1 
               animate={{ scale: [1, 1.05, 1] }}

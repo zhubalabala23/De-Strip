@@ -77,7 +77,7 @@ export default function ActiveMissionPage() {
   const challenges = Array.from({ length: mission.questions.length }, (_, i) => i);
 
   return (
-    <div className="h-screen w-full relative overflow-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
+    <div className="min-h-screen md:h-screen w-full relative overflow-y-auto md:overflow-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
       
       {/* Background System */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
@@ -120,14 +120,14 @@ export default function ActiveMissionPage() {
       <div className="relative z-20 w-full h-full flex flex-col items-center p-3 md:p-6">
         
         {/* Header */}
-        <div className="w-full flex items-center justify-between relative mb-2 md:mb-4 mt-1 z-50 px-2 md:px-8">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between md:justify-center relative mb-2 md:mb-4 mt-1 z-50 px-2 md:px-8 min-h-[72px] md:min-h-0">
           
           {selectedChallenge === null ? (
             /* Header Menu Tantangan */
             <>
               <button 
                 onClick={() => navigate('/missions')}
-                className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0"
+                className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0 absolute left-2 top-1 md:relative md:left-auto md:top-auto"
               >
                 <ArrowLeft size={28} className="text-[#FFD84D]" strokeWidth={4} />
               </button>
@@ -135,7 +135,7 @@ export default function ActiveMissionPage() {
               <motion.div 
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="bg-[#6B4624] px-6 py-2 md:px-12 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl mx-auto"
+                className="bg-[#6B4624] px-6 py-2 md:px-12 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl mx-auto mt-16 md:mt-0"
               >
                 <motion.h1 
                   animate={{ scale: [1, 1.05, 1] }}
@@ -147,7 +147,7 @@ export default function ActiveMissionPage() {
                 </motion.h1>
               </motion.div>
 
-              <div className="flex flex-col items-end gap-1 flex-shrink-0">
+              <div className="flex flex-col items-end gap-1 flex-shrink-0 absolute right-2 top-1 md:relative md:right-auto md:top-auto">
                 <button 
                   onClick={() => navigate('/')}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
@@ -162,25 +162,25 @@ export default function ActiveMissionPage() {
           ) : (
             /* Header Saat Mengerjakan Soal */
             <>
-              <div className="flex gap-2 md:gap-4 flex-shrink-0 z-10">
+              <div className="flex gap-2 md:gap-4 flex-shrink-0 z-10 absolute left-2 top-1 md:relative md:left-auto md:top-auto">
                 <button 
                   onClick={() => setSelectedChallenge(null)}
-                  className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
+                  className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
-                  <ArrowLeft size={32} className="text-[#FFD84D]" strokeWidth={4} />
+                  <ArrowLeft size={28} className="text-[#FFD84D]" strokeWidth={4} />
                 </button>
                 <button 
                   onClick={() => navigate('/')}
-                  className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
+                  className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
-                  <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />
+                  <Home size={28} className="text-[#FFD84D]" strokeWidth={3} />
                 </button>
               </div>
 
               <motion.div 
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="bg-[#6B4624] px-8 py-3 md:px-16 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl absolute left-1/2 transform -translate-x-1/2 z-0"
+                className="bg-[#6B4624] px-8 py-3 md:px-16 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl absolute left-1/2 transform -translate-x-1/2 z-0 hidden md:block"
               >
                 <motion.h1 
                   animate={{ scale: [1, 1.05, 1] }}
@@ -192,8 +192,8 @@ export default function ActiveMissionPage() {
                 </motion.h1>
               </motion.div>
 
-              <div className="bg-[#FF3B30] px-6 py-2 md:px-8 md:py-3 rounded-[40px] shadow-2xl flex items-center justify-center flex-shrink-0 border-b-[6px] border-[#C1272D] z-10">
-                <h2 className="text-white font-tropika text-lg md:text-2xl tracking-widest drop-shadow-md">
+              <div className="bg-[#FF3B30] px-4 py-2 md:px-8 md:py-3 rounded-[40px] shadow-2xl flex items-center justify-center flex-shrink-0 border-b-[6px] border-[#C1272D] z-10 absolute right-2 top-1 md:relative md:right-auto md:top-auto">
+                <h2 className="text-white font-tropika text-sm md:text-2xl tracking-widest drop-shadow-md">
                   Skor : <span className="font-sans font-black">{currentScore}</span>
                 </h2>
               </div>
@@ -250,7 +250,7 @@ export default function ActiveMissionPage() {
             className="w-full max-w-6xl mx-auto flex-1 flex flex-col md:flex-row gap-4 md:gap-8 p-2 md:p-6 relative z-20 items-stretch"
           >
             {/* Panel Kiri: Gambar, QR, dan Teks Literasi */}
-            <div className="w-full md:w-1/2 bg-white rounded-[40px] border-[6px] md:border-[8px] border-black p-4 md:p-6 shadow-2xl flex flex-col h-full">
+            <div className="w-full md:w-1/2 bg-white rounded-[40px] border-[6px] md:border-[8px] border-black p-4 md:p-6 shadow-2xl flex flex-col md:h-full">
               <div className="flex flex-row justify-between items-start gap-4 mb-4">
                 {/* Gambar Objek */}
                 <div className="w-[62%] h-36 md:h-52 overflow-hidden flex items-center justify-center rounded-2xl border-[1px] border-black bg-gray-50 shadow-sm">
@@ -285,6 +285,9 @@ export default function ActiveMissionPage() {
               
               {/* Balon Pertanyaan */}
               <div className="bg-white rounded-[30px] border-[6px] border-black p-4 md:p-6 shadow-xl">
+                <div className="md:hidden text-center font-tropika text-[#FF7F27] text-lg mb-1" style={{ WebkitTextStroke: '0.5px #8C5300' }}>
+                  TANTANGAN {selectedChallenge + 1}
+                </div>
                 <p className="text-center font-black text-sm md:text-lg text-black">
                   Berdasarkan teks deskripsi di samping, pilihlah jawaban yang paling tepat!
                 </p>

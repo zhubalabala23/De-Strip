@@ -82,7 +82,7 @@ export default function MissionsMenuPage() {
           <motion.div 
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#6B4624] px-10 py-4 md:px-16 md:py-6 rounded-[50px] border-b-[8px] border-[#4A2E1B] shadow-2xl mx-auto mt-2 md:mt-0"
+            className="bg-[#6B4624] px-10 py-4 md:px-16 md:py-6 rounded-[50px] border-b-[8px] border-[#4A2E1B] shadow-2xl mx-auto mt-16 md:mt-0"
           >
             <motion.h1 
               animate={{ scale: [1, 1.05, 1] }}
