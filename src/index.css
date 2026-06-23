@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-white bg-opacity-70 backdrop-blur-md border border-white border-opacity-40 shadow-lg;
+  }
+}
+
+.font-tropika {
+  font-family: 'Lilita One', cursive;
+}
+
+.font-canva {
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  background-image: url('./assets/images/background.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+}
