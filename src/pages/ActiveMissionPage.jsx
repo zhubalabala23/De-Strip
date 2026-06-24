@@ -120,7 +120,7 @@ export default function ActiveMissionPage() {
       <div className="relative z-20 w-full h-full flex flex-col items-center p-3 md:p-6">
         
         {/* Header */}
-        <div className="w-full flex flex-col md:flex-row items-center justify-between md:justify-center relative mb-2 md:mb-4 mt-1 z-50 px-2 md:px-8 min-h-[72px] md:min-h-0">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between relative mb-2 md:mb-4 mt-1 z-50 px-2 md:px-8 min-h-[72px] md:min-h-0">
           
           {selectedChallenge === null ? (
             /* Header Menu Tantangan */
@@ -180,7 +180,7 @@ export default function ActiveMissionPage() {
               <motion.div 
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="bg-[#6B4624] px-8 py-3 md:px-16 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl absolute left-1/2 transform -translate-x-1/2 z-0 hidden md:block"
+                className="bg-[#6B4624] px-8 py-3 md:px-16 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-0 hidden md:block"
               >
                 <motion.h1 
                   animate={{ scale: [1, 1.05, 1] }}
