@@ -35,6 +35,21 @@ export default function ActiveMissionPage() {
     setCompletedChallenges(progress[mission.id] || []);
   }, [mission, navigate]);
 
+  const handleBackToMenu = () => {
+    setSelectedChallenge(null);
+    setSelectedAnswer(null);
+    setFeedback(null);
+  };
+
+  useEffect(() => {
+    if (selectedAnswer !== null) {
+      const timer = setTimeout(() => {
+        handleBackToMenu();
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedAnswer]);
+
   if (!mission) return null;
 
   const handleSelectChallenge = (idx) => {
@@ -164,7 +179,7 @@ export default function ActiveMissionPage() {
             <>
               <div className="flex gap-2 md:gap-4 flex-shrink-0 z-10 absolute left-2 top-1 md:relative md:left-auto md:top-auto">
                 <button 
-                  onClick={() => setSelectedChallenge(null)}
+                  onClick={handleBackToMenu}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
                   <ArrowLeft size={28} className="text-[#FFD84D]" strokeWidth={4} />
@@ -335,8 +350,7 @@ export default function ActiveMissionPage() {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-0 left-0 w-full max-w-2xl mx-auto p-4 z-[100] pointer-events-none"
-            style={{ left: '50%', transform: 'translateX(-50%)' }}
+            className="fixed bottom-0 left-0 right-0 w-full max-w-2xl mx-auto p-4 z-[100] pointer-events-none"
           >
             <div className={`pointer-events-auto rounded-3xl p-6 shadow-2xl flex flex-col gap-4 border-4 border-white ${feedback === 'correct' ? 'bg-[#39B54A]' : 'bg-[#ED1C24]'}`}>
               <div className="flex items-center justify-center gap-3 text-white font-black text-2xl md:text-3xl font-tropika tracking-wider drop-shadow-md">
@@ -347,7 +361,7 @@ export default function ActiveMissionPage() {
                 {feedback === 'correct' ? 'Kerja bagus detektif! Lanjutkan pencarianmu.' : 'Tidak apa-apa, ayo coba lagi di tantangan berikutnya!'}
               </p>
               <button 
-                onClick={() => setSelectedChallenge(null)}
+                onClick={handleBackToMenu}
                 className="w-full bg-white text-gray-900 font-black py-4 rounded-2xl mt-2 hover:bg-gray-100 shadow-lg text-lg transition-transform active:scale-95 border-b-4 border-gray-300 active:border-b-0"
               >
                 Kembali ke Menu Tantangan
