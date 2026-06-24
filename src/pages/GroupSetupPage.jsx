@@ -207,7 +207,7 @@ export default function GroupSetupPage() {
           animate={{ opacity: 1, y: 0 }}
           className="w-full max-w-4xl mb-10"
         >
-          <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10 rounded-[30px] shadow-2xl border-4 border-white">
+          <div className="bg-white/95 backdrop-blur-sm p-4 sm:p-8 md:p-10 rounded-[30px] shadow-2xl border-4 border-white">
             <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto text-detectiveBlue">
               <Users size={40} />
             </div>
@@ -230,7 +230,7 @@ export default function GroupSetupPage() {
 
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-end border-b-2 border-gray-100 pb-2">
-                <label className="font-semibold text-sm text-gray-800">Anggota Kelompok (Maks. 5 Orang)</label>
+                <label className="font-semibold text-xs sm:text-sm text-gray-800">Anggota Kelompok (Maks. 5 Orang)</label>
                 <span className="w-20 text-center text-xs font-bold text-gray-500 mr-2">Nomor Absen</span>
               </div>
 
@@ -244,7 +244,7 @@ export default function GroupSetupPage() {
                     value={member.name}
                     onChange={(e) => handleMemberChange(index, 'name', e.target.value)}
                     placeholder="Nama Lengkap"
-                    className="flex-1 px-3 py-2 rounded-lg border border-gray-200 focus:border-detectivePrimary outline-none text-sm"
+                    className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-gray-200 focus:border-detectivePrimary outline-none text-sm"
                   />
                   <input
                     type="text"

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Info, Lightbulb, Copy, ClipboardList, Menu, X } from 'lucide-react';
+import { ClipboardList, Menu, X } from 'lucide-react';
 import museumImg from '../assets/images/museum.png';
 import leftTreeImg from '../assets/images/left_tree.png';
 import rightTreeImg from '../assets/images/right_tree.png';
@@ -9,16 +9,20 @@ import characterImg from '../assets/images/charachter.png';
 import boardTitleImg from '../assets/images/board_title_top.png';
 import buttonPlayImg from '../assets/images/button_play.png';
 import fanImg from '../assets/images/fan.png';
+import quizIcon from '../assets/images/icon_menu/quiz.png';
+import refleksiIcon from '../assets/images/icon_menu/refleksi.png';
+import evaluasiIcon from '../assets/images/icon_menu/evaluasi.png';
+import petunjukIcon from '../assets/images/icon_menu/petunjuk.png';
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const menuItems = [
-    { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: <Info size={32} className="text-[#654321]" />, bgWhite: true },
-    { title: "KUIZ PEMAHAMAN", path: "/group-setup", icon: <Lightbulb size={32} className="text-white" />, bgWhite: false },
-    { title: "AYO REFLEKSI", path: "/refleksi", icon: <Copy size={32} className="text-white" />, bgWhite: false },
-    { title: "EVALUASI AKHIR", path: "/evaluasi", icon: <ClipboardList size={32} className="text-white" />, bgWhite: false },
+    { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: petunjukIcon, bgWhite: false, isImage: true },
+    { title: "KUIZ PEMAHAMAN", path: "/group-setup", icon: quizIcon, bgWhite: false, isImage: true },
+    { title: "AYO REFLEKSI", path: "/refleksi", icon: refleksiIcon, bgWhite: false, isImage: true },
+    { title: "EVALUASI AKHIR", path: "/evaluasi", icon: evaluasiIcon, bgWhite: false, isImage: true },
   ];
 
   return (
@@ -150,10 +154,18 @@ export default function LandingPage() {
               <div className="bg-[#654321] w-[85%] lg:w-[90%] h-full flex items-center justify-center clip-path-arrow shadow-2xl relative border-y-[3px] border-l-[3px] border-[#4a2e1b]">
                 <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
                 <div className={`relative z-10 w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center mr-4 sm:mr-6 md:mr-8 ${item.bgWhite ? 'bg-white rounded-full shadow-inner' : ''}`}>
-                  {React.cloneElement(item.icon, { 
-                    size: undefined, 
-                    className: `${item.icon.props.className} w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7`
-                  })}
+                  {item.isImage ? (
+                    <img 
+                      src={item.icon} 
+                      alt={item.title} 
+                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 object-contain" 
+                    />
+                  ) : (
+                    React.cloneElement(item.icon, { 
+                      size: undefined, 
+                      className: `${item.icon.props.className} w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7`
+                    })
+                  )}
                 </div>
               </div>
             </div>
@@ -200,10 +212,18 @@ export default function LandingPage() {
                     className="flex items-center gap-4 bg-white/10 hover:bg-white/25 hover:scale-[1.02] border border-white/10 rounded-2xl p-4 text-white font-bold text-sm tracking-wide text-left cursor-pointer active:scale-95 transition-all w-full"
                   >
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${item.bgWhite ? 'bg-white text-[#654321]' : 'bg-[#F68026] text-white'}`}>
-                      {React.cloneElement(item.icon, { 
-                        size: undefined, 
-                        className: `w-5 h-5 ${item.bgWhite ? 'text-[#654321]' : 'text-white'}` 
-                      })}
+                      {item.isImage ? (
+                        <img 
+                          src={item.icon} 
+                          alt={item.title} 
+                          className="w-6 h-6 object-contain" 
+                        />
+                      ) : (
+                        React.cloneElement(item.icon, { 
+                          size: undefined, 
+                          className: `w-5 h-5 ${item.bgWhite ? 'text-[#654321]' : 'text-white'}` 
+                        })
+                      )}
                     </div>
                     <span className="flex-1 text-xs sm:text-sm">{item.title}</span>
                   </motion.button>
