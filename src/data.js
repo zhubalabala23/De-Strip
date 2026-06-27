@@ -1,26 +1,26 @@
-import lingkunganSoal1 from './assets/images/image_5soal/lingkungan/soal1.png';
-import lingkunganSoal2 from './assets/images/image_5soal/lingkungan/soal2.png';
-import lingkunganSoal3 from './assets/images/image_5soal/lingkungan/soal3.png';
-import lingkunganSoal4 from './assets/images/image_5soal/lingkungan/soal4.png';
-import lingkunganSoal5 from './assets/images/image_5soal/lingkungan/soal5.png';
+import lingkunganSoal1 from './assets/images/image_5soal/lingkungan/soal1.webp';
+import lingkunganSoal2 from './assets/images/image_5soal/lingkungan/soal2.webp';
+import lingkunganSoal3 from './assets/images/image_5soal/lingkungan/soal3.webp';
+import lingkunganSoal4 from './assets/images/image_5soal/lingkungan/soal4.webp';
+import lingkunganSoal5 from './assets/images/image_5soal/lingkungan/soal5.webp';
 
-import fenomenaSoal1 from './assets/images/image_5soal/fenomena_alam/soal1.png';
-import fenomenaSoal2 from './assets/images/image_5soal/fenomena_alam/soal2.png';
-import fenomenaSoal3 from './assets/images/image_5soal/fenomena_alam/soal3.png';
-import fenomenaSoal4 from './assets/images/image_5soal/fenomena_alam/soal4.png';
-import fenomenaSoal5 from './assets/images/image_5soal/fenomena_alam/soal5.png';
+import fenomenaSoal1 from './assets/images/image_5soal/fenomena_alam/soal1.webp';
+import fenomenaSoal2 from './assets/images/image_5soal/fenomena_alam/soal2.webp';
+import fenomenaSoal3 from './assets/images/image_5soal/fenomena_alam/soal3.webp';
+import fenomenaSoal4 from './assets/images/image_5soal/fenomena_alam/soal4.webp';
+import fenomenaSoal5 from './assets/images/image_5soal/fenomena_alam/soal5.webp';
 
-import floraFaunaSoal1 from './assets/images/image_5soal/flora_fauna/soal1.png';
-import floraFaunaSoal2 from './assets/images/image_5soal/flora_fauna/soal2.png';
-import floraFaunaSoal3 from './assets/images/image_5soal/flora_fauna/soal3.png';
-import floraFaunaSoal4 from './assets/images/image_5soal/flora_fauna/soal4.png';
-import floraFaunaSoal5 from './assets/images/image_5soal/flora_fauna/soal5.png';
+import floraFaunaSoal1 from './assets/images/image_5soal/flora_fauna/soal1.webp';
+import floraFaunaSoal2 from './assets/images/image_5soal/flora_fauna/soal2.webp';
+import floraFaunaSoal3 from './assets/images/image_5soal/flora_fauna/soal3.webp';
+import floraFaunaSoal4 from './assets/images/image_5soal/flora_fauna/soal4.webp';
+import floraFaunaSoal5 from './assets/images/image_5soal/flora_fauna/soal5.webp';
 
-import tokohSoal1 from './assets/images/image_5soal/tokoh/soal1.png';
-import tokohSoal2 from './assets/images/image_5soal/tokoh/soal2.png';
-import tokohSoal3 from './assets/images/image_5soal/tokoh/soal3.png';
-import tokohSoal4 from './assets/images/image_5soal/tokoh/soal4.png';
-import tokohSoal5 from './assets/images/image_5soal/tokoh/soal5.png';
+import tokohSoal1 from './assets/images/image_5soal/tokoh/soal1.webp';
+import tokohSoal2 from './assets/images/image_5soal/tokoh/soal2.webp';
+import tokohSoal3 from './assets/images/image_5soal/tokoh/soal3.webp';
+import tokohSoal4 from './assets/images/image_5soal/tokoh/soal4.webp';
+import tokohSoal5 from './assets/images/image_5soal/tokoh/soal5.webp';
 
 export const missions = [
   {

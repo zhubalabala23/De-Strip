@@ -5,11 +5,11 @@ import { QRCodeSVG } from 'qrcode.react';
 import { PlayCircle, CheckCircle2, XCircle, ArrowLeft, Home, Star } from 'lucide-react';
 import { missions } from '../data';
 
-import museumImg from '../assets/images/museum.png';
-import leftTreeImg from '../assets/images/left_tree.png';
-import rightTreeImg from '../assets/images/right_tree.png';
-import fanImg from '../assets/images/fan.png';
-import charachterImg from '../assets/images/charachter.png';
+import museumImg from '../assets/images/museum.webp';
+import leftTreeImg from '../assets/images/left_tree.webp';
+import rightTreeImg from '../assets/images/right_tree.webp';
+import fanImg from '../assets/images/fan.webp';
+import charachterImg from '../assets/images/charachter.webp';
 
 export default function ActiveMissionPage() {
   const { categoryId } = useParams();

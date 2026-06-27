@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, RotateCcw, Home } from 'lucide-react';
 
-import museumImg from '../assets/images/museum.png';
-import leftTreeImg from '../assets/images/left_tree.png';
-import rightTreeImg from '../assets/images/right_tree.png';
-import fanImg from '../assets/images/fan.png';
-import missionLingkunganImg from '../assets/images/pilih_misi/lingkungan.png';
-import missionFenomenaImg from '../assets/images/pilih_misi/fenomena_alam.png';
-import missionFloraImg from '../assets/images/pilih_misi/flora_fauna.png';
-import missionTokohImg from '../assets/images/pilih_misi/tokoh.png';
+import museumImg from '../assets/images/museum.webp';
+import leftTreeImg from '../assets/images/left_tree.webp';
+import rightTreeImg from '../assets/images/right_tree.webp';
+import fanImg from '../assets/images/fan.webp';
+import missionLingkunganImg from '../assets/images/pilih_misi/lingkungan.webp';
+import missionFenomenaImg from '../assets/images/pilih_misi/fenomena_alam.webp';
+import missionFloraImg from '../assets/images/pilih_misi/flora_fauna.webp';
+import missionTokohImg from '../assets/images/pilih_misi/tokoh.webp';
 
 export default function MissionsMenuPage() {
   const navigate = useNavigate();

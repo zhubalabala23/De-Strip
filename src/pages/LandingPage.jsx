@@ -4,26 +4,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ClipboardList, Menu, X } from 'lucide-react';
 
 // Core assets
-import museumImg from '../assets/images/museum.png';
-import leftTreeImg from '../assets/images/left_tree.png';
-import rightTreeImg from '../assets/images/right_tree.png';
-import characterImg from '../assets/images/charachter.png';
-import boardTitleImg from '../assets/images/board_title_top.png';
-import buttonPlayImg from '../assets/images/button_play.png';
-import fanImg from '../assets/images/fan.png';
+import museumImg from '../assets/images/museum.webp';
+import leftTreeImg from '../assets/images/left_tree.webp';
+import rightTreeImg from '../assets/images/right_tree.webp';
+import characterImg from '../assets/images/charachter.webp';
+import boardTitleImg from '../assets/images/board_title_top.webp';
+import buttonPlayImg from '../assets/images/button_play.webp';
+import fanImg from '../assets/images/fan.webp';
 
 // Menu Icons
-import quizIcon from '../assets/images/icon_menu/quiz.png';
-import refleksiIcon from '../assets/images/icon_menu/refleksi.png';
-import evaluasiIcon from '../assets/images/icon_menu/evaluasi.png';
-import petunjukIcon from '../assets/images/icon_menu/petunjuk.png';
+import quizIcon from '../assets/images/icon_menu/quiz.webp';
+import refleksiIcon from '../assets/images/icon_menu/refleksi.webp';
+import evaluasiIcon from '../assets/images/icon_menu/evaluasi.webp';
+import petunjukIcon from '../assets/images/icon_menu/petunjuk.webp';
 
 // New layer assets
-import secondLeftTreeImg from '../assets/images/second_left-tree.png';
-import secondRightTreeImg from '../assets/images/second_right-tree.png';
-import centerTreeImg from '../assets/images/center_tree.png';
-import chairsImg from '../assets/images/chairs.png';
-import lightParkImg from '../assets/images/light_park.png';
+import secondLeftTreeImg from '../assets/images/second_left-tree.webp';
+import secondRightTreeImg from '../assets/images/second_right-tree.webp';
+import centerTreeImg from '../assets/images/center_tree.webp';
+import chairsImg from '../assets/images/chairs.webp';
+import lightParkImg from '../assets/images/light_park.webp';
 
 export default function LandingPage() {
   const navigate = useNavigate();

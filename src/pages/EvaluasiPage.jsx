@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, XCircle, ArrowLeft, Home, Star, Award, ShieldCheck, Users } from 'lucide-react';
 import { saveRecap } from '../firebase';
 
-import museumImg from '../assets/images/museum.png';
-import leftTreeImg from '../assets/images/left_tree.png';
-import rightTreeImg from '../assets/images/right_tree.png';
+import museumImg from '../assets/images/museum.webp';
+import leftTreeImg from '../assets/images/left_tree.webp';
+import rightTreeImg from '../assets/images/right_tree.webp';
 
 const challengesData = [
   {

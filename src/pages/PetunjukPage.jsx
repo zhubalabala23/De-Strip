@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
-import museumImg from '../assets/images/museum.png';
-import leftTreeImg from '../assets/images/left_tree.png';
-import rightTreeImg from '../assets/images/right_tree.png';
-import fanImg from '../assets/images/fan.png';
-import characterImg from '../assets/images/charachter.png';
+import museumImg from '../assets/images/museum.webp';
+import leftTreeImg from '../assets/images/left_tree.webp';
+import rightTreeImg from '../assets/images/right_tree.webp';
+import fanImg from '../assets/images/fan.webp';
+import characterImg from '../assets/images/charachter.webp';
 
 export default function PetunjukPage() {
   const navigate = useNavigate();
