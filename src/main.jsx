@@ -13,6 +13,11 @@ import characterPath from './assets/images/charachter.png';
 import boardTitlePath from './assets/images/board_title_top.png';
 import buttonPlayPath from './assets/images/button_play.png';
 import fanPath from './assets/images/fan.png';
+import secondLeftTreePath from './assets/images/second_left-tree.png';
+import secondRightTreePath from './assets/images/second_right-tree.png';
+import centerTreePath from './assets/images/center_tree.png';
+import chairsPath from './assets/images/chairs.png';
+import lightParkPath from './assets/images/light_park.png';
 
 // Preload function to instruct browser to download images immediately
 const preloadImages = () => {
@@ -24,7 +29,12 @@ const preloadImages = () => {
     characterPath,
     boardTitlePath,
     buttonPlayPath,
-    fanPath
+    fanPath,
+    secondLeftTreePath,
+    secondRightTreePath,
+    centerTreePath,
+    chairsPath,
+    lightParkPath
   ];
   images.forEach(src => {
     const link = document.createElement('link');

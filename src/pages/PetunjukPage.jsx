@@ -22,13 +22,13 @@ export default function PetunjukPage() {
         </div>
 
         {/* LEFT TREE */}
-        <div className="absolute bottom-0 left-0 w-[45%] md:w-[35%] max-w-[450px]">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-auto opacity-80" />
+        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px]">
+          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full opacity-80" />
         </div>
 
         {/* RIGHT TREE */}
-        <div className="absolute bottom-0 right-0 w-[45%] md:w-[35%] max-w-[450px]">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-auto opacity-80" />
+        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px]">
+          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full opacity-80" />
         </div>
 
         {/* CHARACTER & FAN (Kiri) */}

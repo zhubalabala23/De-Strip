@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ClipboardList, Menu, X } from 'lucide-react';
+
+// Core assets
 import museumImg from '../assets/images/museum.png';
 import leftTreeImg from '../assets/images/left_tree.png';
 import rightTreeImg from '../assets/images/right_tree.png';
@@ -9,20 +11,29 @@ import characterImg from '../assets/images/charachter.png';
 import boardTitleImg from '../assets/images/board_title_top.png';
 import buttonPlayImg from '../assets/images/button_play.png';
 import fanImg from '../assets/images/fan.png';
+
+// Menu Icons
 import quizIcon from '../assets/images/icon_menu/quiz.png';
 import refleksiIcon from '../assets/images/icon_menu/refleksi.png';
 import evaluasiIcon from '../assets/images/icon_menu/evaluasi.png';
 import petunjukIcon from '../assets/images/icon_menu/petunjuk.png';
+
+// New layer assets
+import secondLeftTreeImg from '../assets/images/second_left-tree.png';
+import secondRightTreeImg from '../assets/images/second_right-tree.png';
+import centerTreeImg from '../assets/images/center_tree.png';
+import chairsImg from '../assets/images/chairs.png';
+import lightParkImg from '../assets/images/light_park.png';
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const menuItems = [
-    { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: petunjukIcon, bgWhite: false, isImage: true },
-    { title: "KUIZ PEMAHAMAN", path: "/group-setup", icon: quizIcon, bgWhite: false, isImage: true },
-    { title: "AYO REFLEKSI", path: "/refleksi", icon: refleksiIcon, bgWhite: false, isImage: true },
-    { title: "EVALUASI AKHIR", path: "/evaluasi", icon: evaluasiIcon, bgWhite: false, isImage: true },
+    { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: petunjukIcon },
+    { title: "KUIZ PEMAHAMAN", path: "/group-setup", icon: quizIcon },
+    { title: "EVALUASI AKHIR", path: "/evaluasi", icon: evaluasiIcon },
+    { title: "AYO REFLEKSI", path: "/refleksi", icon: refleksiIcon },
   ];
 
   return (
@@ -31,141 +42,220 @@ export default function LandingPage() {
       {/* Tombol Rekap Guru */}
       <button 
         onClick={() => navigate('/teacher-recap')}
-        className="absolute top-4 left-4 z-[100] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-black/10 hover:bg-[#F68026] backdrop-blur-sm rounded-full cursor-pointer transition-all border border-white/20"
+        className="absolute top-4 left-4 z-[100] w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-black/20 hover:bg-[#F68026] hover:text-[#FFD84D] text-white backdrop-blur-sm rounded-full cursor-pointer transition-all border-4 border-white/40 hover:border-[#FFD84D] shadow-lg"
         title="Rekap Nilai Guru"
       >
-        <ClipboardList size={20} className="text-white" />
+        <ClipboardList size={24} />
       </button>
       
-      {/* Tombol Hamburger Menu (Mobile Only) */}
+      {/* Tombol Hamburger Menu */}
       <button 
         onClick={() => setMenuOpen(!menuOpen)}
-        className="absolute top-4 right-4 z-[100] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#F68026] text-[#FFD84D] hover:bg-[#d96a1a] rounded-full shadow-lg border-2 border-white/20 active:scale-95 transition-all md:hidden cursor-pointer"
+        className="absolute top-4 right-4 z-[100] w-12 h-12 md:w-16 md:h-16 flex md:hidden items-center justify-center bg-[#F68026] text-[#FFD84D] hover:bg-[#d96a1a] rounded-full shadow-lg border-4 border-[#FFD84D] active:scale-95 transition-all cursor-pointer"
         title="Menu"
       >
-        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        {menuOpen ? <X size={28} strokeWidth={3} /> : <Menu size={28} strokeWidth={3} />}
       </button>
       
-      {/* 1. MUSEUM (Tengah Bawah) */}
+
+      {/* LAYER 2: SECOND LEFT TREE & SECOND RIGHT TREE */}
       <motion.div 
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.1 }}
+        style={{ zIndex: 10 }}
+        className="absolute bottom-0 left-0 w-[35%] md:w-[38%] max-w-[500px] pointer-events-none"
+      >
+        <img src={secondLeftTreeImg} alt="Second Left Tree" className="w-full h-auto" />
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.1 }}
+        style={{ zIndex: 10 }}
+        className="absolute bottom-0 right-0 w-[35%] md:w-[38%] max-w-[500px] pointer-events-none"
+      >
+        <img src={secondRightTreeImg} alt="Second Right Tree" className="w-full h-auto" />
+      </motion.div>
+
+      {/* LAYER 3: MUSEUM & PLAY BUTTON */}
+      <div 
+        style={{ zIndex: 15 }}
+        className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[76%] md:w-[62%] max-w-[780px] pointer-events-none flex justify-center items-end"
+      >
+        <div className="relative w-full h-auto flex justify-center items-end">
+          {/* CENTER TREE (Di belakang museum) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="absolute bottom-[-70%] left-0 w-full -z-10"
+          >
+            <img src={centerTreeImg} alt="Center Tree" className="w-full h-auto" />
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full h-auto"
+          >
+            <motion.img 
+              src={museumImg} 
+              alt="Museum" 
+              animate={{ scale: [1, 1.02, 1.01, 1.02, 1] }}
+              transition={{ repeat: Infinity, duration: 3.2, ease: "easeInOut" }}
+              className="w-full h-auto drop-shadow-2xl origin-bottom" 
+            />
+          </motion.div>
+
+          {/* PLAY BUTTON (Di atas museum) */}
+          <div 
+            style={{ zIndex: 35 }}
+            className="absolute bottom-[29%] left-1/2 -translate-x-1/2 w-[44%] max-w-[260px] flex justify-center items-center pointer-events-auto"
+          >
+            <motion.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.7, type: "spring", bounce: 0.5 }}
+              onClick={() => navigate('/group-setup')}
+              className="w-full cursor-pointer outline-none group"
+            >
+              <motion.img 
+                src={buttonPlayImg} 
+                alt="Play Button" 
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+                className="w-full h-auto group-hover:scale-110 group-hover:brightness-110 group-active:scale-95 transition-all drop-shadow-lg" 
+              />
+            </motion.button>
+          </div>
+        </div>
+      </div>
+
+      {/* LAYER 4: LEFT TREE & RIGHT TREE (Foreground samping) */}
+      <motion.div
+        initial={{ x: -40, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        style={{ zIndex: 12 }}
+        className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[420px] pointer-events-none"
+      >
+        <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
+      </motion.div>
+      
+      <motion.div
+        initial={{ x: 40, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        style={{ zIndex: 12 }}
+        className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[420px] pointer-events-none"
+      >
+        <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+      </motion.div>
+
+      {/* LAYER 5: STREET LAMP (Kiri depan) */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] z-10 pointer-events-none flex justify-center items-end"
+        transition={{ duration: 0.8, delay: 0.4 }}
+        style={{ zIndex: 25 }}
+        className="absolute bottom-[2%] left-0 md:left-[2%] w-[18%] md:w-[13%] max-w-[150px] pointer-events-none"
       >
-        <img src={museumImg} alt="Museum" className="w-full h-auto drop-shadow-2xl" />
+        <motion.img 
+          src={lightParkImg} 
+          alt="Street Lamp" 
+          animate={{ scale: [1, 1.05, 1.01, 1.05, 1] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          className="w-full h-auto origin-bottom" 
+        />
       </motion.div>
 
-      {/* 2. LEFT TREE */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute bottom-0 left-0 w-[45%] md:w-[35%] max-w-[450px] z-20 pointer-events-none"
+      {/* LAYER 6: BENCH CHAIRS (Kanan depan) */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        style={{ zIndex: 25 }}
+        className="absolute bottom-[5%] right-[7%] md:right-[11%] w-[25%] md:w-[18%] max-w-[200px] pointer-events-none"
       >
-        <img src={leftTreeImg} alt="Left Tree" className="w-full h-auto" />
+        <img src={chairsImg} alt="Chairs/Bench" className="w-full h-auto" />
       </motion.div>
 
-      {/* 3. RIGHT TREE */}
+      {/* LAYER 7: CHARACTER (RUBAH DETEKTIF) & BALING-BALING */}
       <motion.div
-        initial={{ x: 100, opacity: 0 }}
+        initial={{ x: -150, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute bottom-0 right-0 w-[45%] md:w-[35%] max-w-[450px] z-20 pointer-events-none"
+        transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
+        style={{ zIndex: 30 }}
+        className="absolute bottom-0 left-[12%] md:left-[16%] w-[36%] md:w-[30%] lg:w-[24%] max-w-[300px] pointer-events-none"
       >
-        <img src={rightTreeImg} alt="Right Tree" className="w-full h-auto" />
-      </motion.div>
-
-
-
-      {/* 4. CHARACTER (RUBAH DETEKTIF) & BALING-BALING */}
-      <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-        className="absolute -bottom-5 md:-bottom-10 left-[2%] md:left-[8%] w-[50%] md:w-[40%] lg:w-[35%] max-w-[450px] z-30 pointer-events-none"
-      >
-        {/* Baling-baling ditempel langsung ke karakter agar responsif dan selalu di atas topi */}
+        {/* Baling-baling (Fan Blades) */}
         <motion.img
           src={fanImg}
           alt="Fan Blades"
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-          className="absolute -top-[40%] left-[-5%] w-[95%] h-auto origin-center -z-10"
+          className="absolute -top-[35%] left-[-10%] w-[105%] h-auto origin-center -z-10"
         />
+        {/* Karakter Rubah */}
         <motion.img 
           src={characterImg} 
           alt="Character" 
-          animate={{ scale: [1, 1.03, 1] }}
-          transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           className="w-full h-auto relative z-10 origin-bottom" 
         />
       </motion.div>
 
-      {/* 5. BOARD TITLE TOP */}
-      <motion.div
-        initial={{ y: -150 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", bounce: 0.5, delay: 0.1 }}
-        className="absolute top-0 left-0 right-0 mx-auto w-[85%] md:w-[65%] max-w-[700px] z-40 pointer-events-none"
+      {/* LAYER 8: BOARD TITLE TOP */}
+      <div 
+        style={{ zIndex: 40 }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[70%] md:w-[48%] max-w-[580px] pointer-events-none"
       >
-        <img src={boardTitleImg} alt="Board Title" className="w-full h-auto drop-shadow-xl" />
-      </motion.div>
+        <motion.div
+          initial={{ y: -150 }}
+          animate={{ y: 0 }}
+          transition={{ type: "spring", bounce: 0.4, delay: 0.2 }}
+          className="w-full h-auto"
+        >
+          <img src={boardTitleImg} alt="Board Title" className="w-full h-auto drop-shadow-xl" />
+        </motion.div>
+      </div>
 
-      {/* 6. TOMBOL PLAY */}
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.6, type: "spring", bounce: 0.6 }}
-        onClick={() => navigate('/group-setup')}
-        className="absolute top-[42%] md:top-[48%] left-0 right-0 mx-auto w-max z-50 cursor-pointer outline-none group"
-      >
-        <motion.img 
-          src={buttonPlayImg} 
-          alt="Play Button" 
-          animate={{ scale: [1, 1.06, 1] }}
-          transition={{ repeat: Infinity, duration: 0.4, ease: "easeInOut" }}
-          className="w-40 md:w-56 lg:w-64 h-auto group-hover:scale-110 group-hover:brightness-110 group-active:scale-95 transition-all" 
-        />
-      </motion.button>
+      {/* Tombol Play dipindahkan ke dalam container museum agar posisi dan skalanya selalu sinkron dan presisi */}
 
-      {/* 5. MENU SAMPING KANAN (Proporsional di tengah atas - Desktop Only) */}
+      {/* LAYER 10: MENU SAMPING KANAN (Desktop Only - Wood Signposts) */}
       <motion.div 
-        initial={{ x: 300, opacity: 0 }}
+        initial={{ x: 250, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="absolute right-0 top-[10%] md:top-[15%] lg:top-[20%] z-50 hidden md:flex flex-col items-end gap-3 md:gap-5 lg:gap-6 w-44 sm:w-52 md:w-64 lg:w-72 pr-0"
+        transition={{ delay: 0.4 }}
+        style={{ zIndex: 45 }}
+        className="absolute right-0 top-[20%] sm:top-[22%] md:top-[25%] lg:top-[28%] hidden md:flex flex-col items-end gap-3 sm:gap-4 md:gap-5 w-max pr-0"
       >
         {menuItems.map((item, index) => (
           <motion.button 
             key={index}
-            animate={{ scale: [1, 1.04, 1] }}
-            transition={{ repeat: Infinity, duration: 0.5, delay: index * 0.1, ease: "easeInOut" }}
+            animate={{ scale: [1, 1.02, 1] }}
+            transition={{ repeat: Infinity, duration: 1.2, delay: index * 0.15, ease: "easeInOut" }}
             onClick={() => navigate(item.path)}
-            className="group flex flex-col items-end w-full cursor-pointer transform hover:-translate-x-3 transition-transform active:scale-95 origin-right"
+            className="group relative w-32 sm:w-36 md:w-44 lg:w-52 h-9 sm:h-11 md:h-14 lg:h-16 flex justify-end cursor-pointer transform hover:-translate-x-2 transition-transform active:scale-95 duration-200"
           >
-            {/* Teks Label */}
-            <div className="bg-[#4a2e1b]/95 text-white font-bold text-[8px] sm:text-[10px] md:text-xs lg:text-sm tracking-wider px-3 sm:px-4 py-1.5 md:py-2 rounded-l-full mb-0 border-r-0 mr-2 sm:mr-3 md:mr-4 shadow-xl z-10">
-              {item.title}
-            </div>
-            
-            {/* Tombol Panah Kayu */}
-            <div className="relative w-full h-10 sm:h-14 md:h-16 lg:h-20 flex justify-end -mt-1 md:-mt-2">
-              <div className="bg-[#654321] w-[85%] lg:w-[90%] h-full flex items-center justify-center clip-path-arrow shadow-2xl relative border-y-[3px] border-l-[3px] border-[#4a2e1b]">
-                <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
-                <div className={`relative z-10 w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center mr-4 sm:mr-6 md:mr-8 ${item.bgWhite ? 'bg-white rounded-full shadow-inner' : ''}`}>
-                  {item.isImage ? (
-                    <img 
-                      src={item.icon} 
-                      alt={item.title} 
-                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 object-contain" 
-                    />
-                  ) : (
-                    React.cloneElement(item.icon, { 
-                      size: undefined, 
-                      className: `${item.icon.props.className} w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7`
-                    })
-                  )}
+            {/* Outline Papan Kayu */}
+            <div className="bg-[#4A2E1B] w-full h-full clip-path-arrow p-[2px] md:p-[3px] drop-shadow-lg">
+              {/* Isi Papan Kayu dengan Gradient - ditambahkan padding-left 18% untuk menyeimbangkan tip panah */}
+              <div className="bg-gradient-to-r from-[#9c6a3c] to-[#6E421F] w-full h-full clip-path-arrow relative flex items-center justify-center pl-[18%]">
+                {/* Efek Kilau Kayu */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
+                
+                {/* Icon yang di-center pada bagian papan */}
+                <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 flex items-center justify-center">
+                  <img 
+                    src={item.icon} 
+                    alt={item.title} 
+                    className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-200" 
+                  />
                 </div>
               </div>
             </div>
@@ -183,7 +273,7 @@ export default function LandingPage() {
               animate={{ opacity: 0.6 }}
               exit={{ opacity: 0 }}
               onClick={() => setMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 z-[80] md:hidden"
+              className="fixed inset-0 bg-black/60 z-[80]"
             />
 
             {/* Slide-out Menu Panel */}
@@ -192,7 +282,7 @@ export default function LandingPage() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-full w-[260px] sm:w-[320px] bg-[#6B4624] border-l-8 border-[#4A2E1B] p-6 pt-20 z-[90] md:hidden shadow-2xl flex flex-col gap-6"
+              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-[#6B4624] border-l-8 border-[#4A2E1B] p-6 pt-24 z-[90] shadow-2xl flex flex-col gap-6"
             >
               <div className="text-center font-tropika text-2xl text-[#FFD84D] tracking-widest mb-4" style={{ WebkitTextStroke: '1px #4A2E1B' }}>
                 MENU UTAMA
@@ -211,21 +301,14 @@ export default function LandingPage() {
                     }}
                     className="flex items-center gap-4 bg-white/10 hover:bg-white/25 hover:scale-[1.02] border border-white/10 rounded-2xl p-4 text-white font-bold text-sm tracking-wide text-left cursor-pointer active:scale-95 transition-all w-full"
                   >
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${item.bgWhite ? 'bg-white text-[#654321]' : 'bg-[#F68026] text-white'}`}>
-                      {item.isImage ? (
-                        <img 
-                          src={item.icon} 
-                          alt={item.title} 
-                          className="w-6 h-6 object-contain" 
-                        />
-                      ) : (
-                        React.cloneElement(item.icon, { 
-                          size: undefined, 
-                          className: `w-5 h-5 ${item.bgWhite ? 'text-[#654321]' : 'text-white'}` 
-                        })
-                      )}
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-[#F68026] text-white">
+                      <img 
+                        src={item.icon} 
+                        alt={item.title} 
+                        className="w-6 h-6 object-contain" 
+                      />
                     </div>
-                    <span className="flex-1 text-xs sm:text-sm">{item.title}</span>
+                    <span className="flex-1 text-xs sm:text-sm font-tropika text-[#FFD84D] tracking-wider">{item.title}</span>
                   </motion.button>
                 ))}
               </div>
@@ -237,7 +320,7 @@ export default function LandingPage() {
       {/* CSS untuk bentuk panah */}
       <style dangerouslySetInnerHTML={{__html: `
         .clip-path-arrow {
-          clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%, 0% 50%);
+          clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 18% 100%, 0% 50%);
         }
       `}} />
     </div>
