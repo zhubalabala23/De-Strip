@@ -18,6 +18,12 @@ export default function RefleksiPage() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+      return;
+    }
+
     const savedName = localStorage.getItem('destrip_groupName');
     const progressStr = localStorage.getItem('destrip_progress') || '{}';
     const progress = JSON.parse(progressStr);
@@ -64,15 +70,17 @@ export default function RefleksiPage() {
     <div className="min-h-screen w-full relative overflow-y-auto overflow-x-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
       
       {/* Background System */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
-        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] flex justify-center items-end opacity-40">
-          <img src={museumImg} alt="Museum" className="w-full h-auto" />
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px] opacity-60">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
-        </div>
-        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px] opacity-60">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 mx-auto w-[90%] max-w-[1100px] flex justify-center items-end opacity-40">
+            <img src={museumImg} alt="Museum" className="w-full h-auto" />
+          </div>
+          <div className="absolute top-0 bottom-0 left-0 w-[32%] max-w-[450px] opacity-60">
+            <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 w-[32%] max-w-[450px] opacity-60">
+            <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+          </div>
         </div>
       </div>
 
@@ -81,7 +89,7 @@ export default function RefleksiPage() {
         {/* Header */}
         <div className="w-full flex items-center justify-between relative mb-8 mt-2 z-50">
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/landing')}
             className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0"
           >
             <ArrowLeft size={32} className="text-[#FFD84D]" strokeWidth={4} />
@@ -103,7 +111,7 @@ export default function RefleksiPage() {
           </motion.div>
 
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/landing')}
             className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0 opacity-0 pointer-events-none"
           >
             <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />
@@ -115,7 +123,7 @@ export default function RefleksiPage() {
           animate={{ scale: 1, opacity: 1 }}
           className="bg-white/95 backdrop-blur-sm p-6 md:p-10 rounded-[40px] border-8 border-white shadow-2xl w-full max-w-4xl relative z-20 pb-10 mb-20"
         >
-          <div className="bg-[#FFD84D] text-[#FF3B30] font-bold text-base md:text-xl px-6 py-4 rounded-3xl mb-8 shadow-sm border-4 border-[#FFC107] text-center max-w-2xl mx-auto">
+          <div className="bg-[#FFD84D] text-[#FF3B30] font-bold text-lg md:text-2xl px-6 py-4 rounded-3xl mb-8 shadow-sm border-4 border-[#FFC107] text-center max-w-2xl mx-auto">
             Setelah bermain, yuk renungkan pengalaman belajarmu!
           </div>
 
@@ -133,7 +141,7 @@ export default function RefleksiPage() {
                     <button
                       key={opt}
                       onClick={() => handleCheckboxToggle(opt)}
-                      className={`flex items-center gap-4 px-6 py-4 rounded-2xl border-4 font-bold text-sm md:text-lg transition-all ${isSelected ? 'bg-[#39B54A] border-[#228B22] text-white shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-700'}`}
+                      className={`flex items-center gap-4 px-6 py-4 rounded-2xl border-4 font-bold text-base md:text-xl lg:text-2xl transition-all ${isSelected ? 'bg-[#39B54A] border-[#228B22] text-white shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-700'}`}
                     >
                       <div className={`w-8 h-8 rounded-xl flex items-center justify-center border-2 ${isSelected ? 'bg-white border-white' : 'border-gray-400'}`}>
                         {isSelected && <CheckCircle2 size={24} className="text-[#39B54A]" />}
@@ -157,7 +165,7 @@ export default function RefleksiPage() {
                     <button
                       key={opt}
                       onClick={() => setAnswers({...answers, q2: opt})}
-                      className={`flex items-center justify-center gap-3 px-8 py-4 rounded-2xl border-4 font-bold text-sm md:text-lg transition-all flex-1 ${isSelected ? 'bg-[#FF7F27] border-[#C1272D] text-white shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-700'}`}
+                      className={`flex items-center justify-center gap-3 px-8 py-4 rounded-2xl border-4 font-bold text-base md:text-xl lg:text-2xl transition-all flex-1 ${isSelected ? 'bg-[#FF7F27] border-[#C1272D] text-white shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-700'}`}
                     >
                       <div className={`w-6 h-6 rounded-full flex items-center justify-center border-2 ${isSelected ? 'bg-white border-white' : 'border-gray-400'}`}>
                         {isSelected && <div className="w-3 h-3 bg-[#FF7F27] rounded-full" />}
@@ -178,7 +186,7 @@ export default function RefleksiPage() {
                 rows={4}
                 value={answers.q3}
                 onChange={e => setAnswers({...answers, q3: e.target.value})}
-                className="w-full p-6 rounded-3xl border-4 border-gray-300 focus:border-[#F68026] outline-none text-base md:text-lg font-bold bg-white text-gray-800 shadow-inner resize-none transition-colors"
+                className="w-full p-6 rounded-3xl border-4 border-gray-300 focus:border-[#F68026] outline-none text-lg md:text-xl lg:text-2xl font-bold bg-white text-gray-800 shadow-inner resize-none transition-colors"
                 placeholder="Ketikan jawaban singkatmu di sini..."
               />
             </div>
@@ -198,7 +206,7 @@ export default function RefleksiPage() {
                       className={`flex flex-col items-center justify-center gap-3 p-4 md:p-6 rounded-3xl border-4 transition-all ${isSelected ? 'bg-[#FFD84D] border-[#F68026] shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 hover:border-gray-400'}`}
                     >
                       <span className="text-4xl md:text-6xl drop-shadow-sm">{opt.emoji}</span>
-                      <span className={`text-xs md:text-base font-black text-center leading-tight ${isSelected ? 'text-[#FF3B30]' : 'text-gray-700'}`}>{opt.label}</span>
+                      <span className={`text-sm md:text-lg lg:text-xl font-black text-center leading-tight ${isSelected ? 'text-[#FF3B30]' : 'text-gray-700'}`}>{opt.label}</span>
                     </button>
                   );
                 })}

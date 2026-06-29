@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Trash2, Download, FileText } from 'lucide-react';
+import { LogOut, Trash2, Download, FileText } from 'lucide-react';
 import { subscribeToRecaps, deleteRecap } from '../firebase';
 
 export default function TeacherRecapPage() {
@@ -9,11 +9,17 @@ export default function TeacherRecapPage() {
   const [recapData, setRecapData] = useState([]);
 
   useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (role !== 'guru') {
+      navigate('/');
+      return;
+    }
+
     const unsubscribe = subscribeToRecaps((data) => {
       setRecapData(data);
     });
     return () => unsubscribe();
-  }, []);
+  }, [navigate]);
 
   const handleDeleteRow = async (index, groupName, id) => {
     if (window.confirm(`Apakah Anda yakin ingin menghapus data kelompok "${groupName || 'Tanpa Nama'}"?`)) {
@@ -79,10 +85,16 @@ export default function TeacherRecapPage() {
         
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between relative z-10">
           <button 
-            onClick={() => navigate('/')}
-            className="bg-white text-[#39B54A] hover:bg-gray-100 transition-colors w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg active:scale-95"
+            onClick={() => {
+              if (window.confirm("Apakah Anda yakin untuk keluar?")) {
+                localStorage.removeItem('destrip_role');
+                navigate('/');
+              }
+            }}
+            className="bg-white text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg active:scale-95"
+            title="Keluar / Logout"
           >
-            <ArrowLeft size={28} strokeWidth={3} />
+            <LogOut size={26} strokeWidth={3} />
           </button>
 
           <h1 className="font-tropika text-lg sm:text-2xl md:text-4xl text-white tracking-widest text-center flex items-center justify-center gap-2">

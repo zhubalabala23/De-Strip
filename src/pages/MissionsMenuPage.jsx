@@ -17,9 +17,15 @@ export default function MissionsMenuPage() {
   const [lockedMission, setLockedMission] = React.useState(null);
 
   React.useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+      return;
+    }
+
     const locked = localStorage.getItem('destrip_locked_mission');
     if (locked) setLockedMission(locked);
-  }, []);
+  }, [navigate]);
 
   const handleResetMission = () => {
     if (lockedMission) {
@@ -42,18 +48,20 @@ export default function MissionsMenuPage() {
   ];
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden bg-[#e6d0a7] font-sans flex flex-col items-center justify-center">
+    <div className="min-h-screen w-full relative overflow-y-auto bg-[#e6d0a7] font-sans flex flex-col items-center justify-center pb-12">
       
       {/* Background System */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
-        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] flex justify-center items-end">
-          <img src={museumImg} alt="Museum" className="w-full h-auto opacity-70" />
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
-        </div>
-        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 mx-auto w-[90%] max-w-[1100px] flex justify-center items-end">
+            <img src={museumImg} alt="Museum" className="w-full h-auto opacity-70" />
+          </div>
+          <div className="absolute top-0 bottom-0 left-0 w-[32%] max-w-[450px]">
+            <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 w-[32%] max-w-[450px]">
+            <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+          </div>
         </div>
         
         {/* FAN */}
@@ -105,7 +113,7 @@ export default function MissionsMenuPage() {
               <span className="text-white font-tropika text-xs md:text-xl tracking-wider pt-1">RESET MISI</span>
             </button>
             <button 
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/landing')}
               className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
               title="Home"
             >

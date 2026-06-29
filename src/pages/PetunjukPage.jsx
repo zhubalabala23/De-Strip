@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
@@ -11,32 +11,41 @@ import characterImg from '../assets/images/charachter.webp';
 export default function PetunjukPage() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+    }
+  }, [navigate]);
+
   return (
-    <div className="min-h-screen w-full relative overflow-x-hidden bg-transparent font-sans flex flex-col items-center">
+    <div className="min-h-screen w-full relative overflow-x-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
       
       {/* Latar Belakang (Museum, Pohon, Baling-baling) sama seperti Landing Page */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none -z-10">
-        {/* MUSEUM */}
-        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] flex justify-center items-end">
-          <img src={museumImg} alt="Museum" className="w-full h-auto opacity-50 md:opacity-100" />
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
+          {/* MUSEUM */}
+          <div className="absolute bottom-0 left-0 right-0 mx-auto w-[90%] max-w-[1100px] flex justify-center items-end">
+            <img src={museumImg} alt="Museum" className="w-full h-auto opacity-50 md:opacity-100" />
+          </div>
+
+          {/* LEFT TREE */}
+          <div className="absolute top-0 bottom-0 left-0 w-[32%] max-w-[450px]">
+            <img src={leftTreeImg} alt="Left Tree" className="w-full h-full opacity-80" />
+          </div>
+
+          {/* RIGHT TREE */}
+          <div className="absolute top-0 bottom-0 right-0 w-[32%] max-w-[450px]">
+            <img src={rightTreeImg} alt="Right Tree" className="w-full h-full opacity-80" />
+          </div>
         </div>
 
-        {/* LEFT TREE */}
-        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full opacity-80" />
-        </div>
-
-        {/* RIGHT TREE */}
-        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full opacity-80" />
-        </div>
-
-        {/* CHARACTER & FAN (Kiri) */}
+        {/* CHARACTER & FAN (Kiri) - Ditempatkan di luar centered wrapper agar relatif terhadap layar */}
         <motion.div
           initial={{ x: -200, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-          className="absolute -bottom-2 md:-bottom-5 left-[2%] md:left-[5%] w-[35%] md:w-[25%] lg:w-[20%] max-w-[280px] z-30 pointer-events-none hidden md:block"
+          className="absolute -bottom-2 md:-bottom-5 left-[1%] md:left-[2%] lg:left-[4%] w-[28%] md:w-[24%] lg:w-[18%] max-w-[320px] z-30 pointer-events-none hidden md:block"
         >
           <motion.img
             src={fanImg}
@@ -63,7 +72,7 @@ export default function PetunjukPage() {
           
           {/* Tombol Back */}
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/landing')}
             className="absolute left-0 top-0 md:top-2 bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 z-20"
           >
             <ArrowLeft size={32} className="text-[#FFD84D]" strokeWidth={4} />
@@ -93,7 +102,7 @@ export default function PetunjukPage() {
           transition={{ delay: 0.2 }}
           className="bg-[#F8F9FA]/95 md:bg-white/95 backdrop-blur-sm border-2 border-white/50 w-full max-w-5xl rounded-[30px] p-6 md:p-10 shadow-2xl flex-1 overflow-y-auto mb-10 z-20"
         >
-          <ul className="font-canva list-disc list-inside md:list-outside pl-0 md:pl-8 text-center md:text-left space-y-3 md:space-y-4 text-[#2C3E50] font-bold text-sm md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto">
+          <ul className="font-canva list-disc list-inside md:list-outside pl-0 md:pl-8 text-center md:text-left space-y-3 md:space-y-4 text-[#2C3E50] font-bold text-base md:text-xl lg:text-2xl leading-relaxed max-w-2xl mx-auto">
             <li>Halo anak-anak!, Multimedia ini berisi materi teks deskripsi kelas V semester 2. Di sini kamu akan belajar sambil bermain menjadi detektif.</li>
             <li>Bacalah setiap teks deskripsi dengan teliti dan pelan-pelan, yah!.</li>
             <li>Perhatikan kata-kata yang menjelaskan bentuk, warna, ukuran, sifat, dan keadaan suatu objek.</li>

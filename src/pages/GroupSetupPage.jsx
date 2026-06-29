@@ -22,6 +22,12 @@ export default function GroupSetupPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+      return;
+    }
+
     const savedGroupName = localStorage.getItem('destrip_groupName');
     const savedMembers = localStorage.getItem('destrip_members');
 
@@ -137,23 +143,25 @@ export default function GroupSetupPage() {
     <div className="min-h-screen w-full relative overflow-x-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
       
       {/* Background System */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
-        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] flex justify-center items-end">
-          <img src={museumImg} alt="Museum" className="w-full h-auto opacity-70" />
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
-        </div>
-        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 mx-auto w-[90%] max-w-[1100px] flex justify-center items-end">
+            <img src={museumImg} alt="Museum" className="w-full h-auto opacity-70" />
+          </div>
+          <div className="absolute top-0 bottom-0 left-0 w-[32%] max-w-[450px]">
+            <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 w-[32%] max-w-[450px]">
+            <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+          </div>
         </div>
 
-        {/* CHARACTER & FAN (Kiri) */}
+        {/* CHARACTER & FAN (Kiri) - Ditempatkan di luar centered wrapper agar relatif terhadap layar */}
         <motion.div
           initial={{ x: -200, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-          className="absolute -bottom-2 md:-bottom-5 left-[2%] md:left-[5%] w-[35%] md:w-[25%] lg:w-[20%] max-w-[280px] z-30 pointer-events-none hidden md:block"
+          className="absolute -bottom-2 md:-bottom-5 left-[1%] md:left-[2%] lg:left-[4%] w-[28%] md:w-[24%] lg:w-[18%] max-w-[320px] z-30 pointer-events-none hidden md:block"
         >
           <motion.img
             src={fanImg}
@@ -179,7 +187,7 @@ export default function GroupSetupPage() {
           
           {/* Tombol Back */}
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/landing')}
             className="absolute left-0 top-0 md:top-2 bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 z-20"
           >
             <ArrowLeft size={32} className="text-[#FFD84D]" strokeWidth={4} />

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
 import GroupSetupPage from './pages/GroupSetupPage';
 import MissionsMenuPage from './pages/MissionsMenuPage';
@@ -12,7 +13,8 @@ import TeacherRecapPage from './pages/TeacherRecapPage';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/landing" element={<LandingPage />} />
       <Route path="/group-setup" element={<GroupSetupPage />} />
       <Route path="/missions" element={<MissionsMenuPage />} />
       <Route path="/mission/:categoryId" element={<ActiveMissionPage />} />

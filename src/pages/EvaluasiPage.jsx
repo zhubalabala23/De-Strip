@@ -56,6 +56,12 @@ export default function EvaluasiPage() {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+      return;
+    }
+
     const savedName = localStorage.getItem('destrip_groupName');
     const progressStr = localStorage.getItem('destrip_progress') || '{}';
     const scoreStr = localStorage.getItem('destrip_score') || '0';
@@ -152,13 +158,13 @@ export default function EvaluasiPage() {
       return (
         <div className="flex flex-col gap-6 w-full max-w-4xl">
           <div className="bg-white p-4 md:p-6 rounded-2xl border-4 border-black shadow-lg">
-            <p className="font-bold text-sm md:text-base mb-2">{currentQ.description}</p>
-            <p className="text-gray-800 italic bg-gray-50 p-4 rounded-xl border border-gray-200">"{currentQ.text}"</p>
+            <p className="font-bold text-base md:text-lg lg:text-xl mb-2">{currentQ.description}</p>
+            <p className="text-base md:text-lg lg:text-xl text-gray-800 italic bg-gray-50 p-4 rounded-xl border border-gray-200 leading-relaxed">"{currentQ.text}"</p>
           </div>
           
           {currentQ.questions.map((q, qIdx) => (
             <div key={qIdx} className="bg-white p-4 md:p-6 rounded-2xl border-4 border-black shadow-lg">
-              <p className="font-black text-sm md:text-lg mb-4">{q.q}</p>
+              <p className="font-black text-base md:text-xl lg:text-2xl mb-4">{q.q}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {q.options.map((opt, optIdx) => {
                   const isSelected = answers[currentIdx]?.[qIdx] === optIdx;
@@ -166,7 +172,7 @@ export default function EvaluasiPage() {
                     <button
                       key={optIdx}
                       onClick={() => handleMultiChoice(qIdx, optIdx)}
-                      className={`text-left p-3 md:p-4 rounded-xl border-4 font-bold transition-all ${isSelected ? 'bg-[#FFD84D] border-[#F68026] text-black shadow-inner transform scale-[0.98]' : 'bg-gray-50 border-gray-200 hover:bg-gray-100'}`}
+                      className={`text-left p-3 md:p-4 rounded-xl border-4 font-bold text-sm md:text-base lg:text-lg transition-all ${isSelected ? 'bg-[#FFD84D] border-[#F68026] text-black shadow-inner transform scale-[0.98]' : 'bg-gray-50 border-gray-200 hover:bg-gray-100'}`}
                     >
                       {opt}
                     </button>
@@ -183,9 +189,9 @@ export default function EvaluasiPage() {
       return (
         <div className="flex flex-col gap-6 w-full items-center">
           <div className="bg-white p-6 md:p-8 rounded-3xl border-4 border-black shadow-xl w-full max-w-2xl text-center">
-            <p className="font-black text-lg md:text-xl mb-4">{currentQ.description}</p>
+            <p className="font-black text-xl md:text-2xl lg:text-3xl mb-4">{currentQ.description}</p>
             {currentQ.text && (
-              <p className="text-gray-800 italic bg-gray-50 p-4 rounded-xl border border-gray-200 mb-6 text-xl">
+              <p className="text-gray-800 italic bg-gray-50 p-4 rounded-xl border border-gray-200 mb-6 text-xl md:text-2xl lg:text-3xl leading-relaxed">
                 {currentQ.text.split('\n').map((line, i) => <span key={i}>{line}<br/></span>)}
               </p>
             )}
@@ -197,7 +203,7 @@ export default function EvaluasiPage() {
                   <button
                     key={optIdx}
                     onClick={() => handleCheckboxToggle(optIdx)}
-                    className={`flex items-center gap-3 px-6 py-3 rounded-2xl border-4 font-black text-lg transition-all ${isSelected ? 'bg-[#39B54A] border-[#228B22] text-white shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-700'}`}
+                    className={`flex items-center gap-3 px-6 py-3 rounded-2xl border-4 font-black text-lg md:text-xl lg:text-2xl transition-all ${isSelected ? 'bg-[#39B54A] border-[#228B22] text-white shadow-inner transform scale-[0.98]' : 'bg-white border-gray-300 hover:bg-gray-100 text-gray-700'}`}
                   >
                     <div className={`w-6 h-6 rounded flex items-center justify-center border-2 ${isSelected ? 'bg-white border-white' : 'border-gray-400'}`}>
                       {isSelected && <CheckCircle2 size={20} className="text-[#39B54A]" />}
@@ -292,7 +298,7 @@ export default function EvaluasiPage() {
               localStorage.removeItem('destrip_eval_currentIdx');
               localStorage.removeItem('destrip_eval_isDone');
               localStorage.removeItem('destrip_eval_score');
-              navigate('/');
+              navigate('/landing');
             }}
             className="mt-10 bg-[#F68026] hover:bg-[#d96a1a] text-white font-tropika text-xl md:text-3xl py-4 px-10 rounded-full shadow-xl border-b-8 border-[#C1272D] active:border-b-0 active:translate-y-2 transition-all tracking-wider"
           >
@@ -307,15 +313,17 @@ export default function EvaluasiPage() {
     <div className="min-h-screen w-full relative overflow-y-auto overflow-x-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
       
       {/* Background System */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
-        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] flex justify-center items-end opacity-40">
-          <img src={museumImg} alt="Museum" className="w-full h-auto" />
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px] opacity-60">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
-        </div>
-        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px] opacity-60">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 mx-auto w-[90%] max-w-[1100px] flex justify-center items-end opacity-40">
+            <img src={museumImg} alt="Museum" className="w-full h-auto" />
+          </div>
+          <div className="absolute top-0 bottom-0 left-0 w-[32%] max-w-[450px] opacity-60">
+            <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 w-[32%] max-w-[450px] opacity-60">
+            <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+          </div>
         </div>
       </div>
 
@@ -344,7 +352,7 @@ export default function EvaluasiPage() {
           </motion.div>
 
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/landing')}
             className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0"
           >
             <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />

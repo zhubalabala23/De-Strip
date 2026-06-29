@@ -17,11 +17,7 @@
 }
 
 body {
-  background-image: url('./assets/images/background.webp');
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-color: #e6d0a7;
   min-height: 100vh;
   margin: 0;
 }

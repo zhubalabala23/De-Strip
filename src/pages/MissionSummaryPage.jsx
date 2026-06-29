@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Award, ChevronRight } from 'lucide-react';
@@ -10,6 +11,13 @@ export default function MissionSummaryPage() {
   const mission = missions.find(m => m.id === categoryId);
   const groupName = localStorage.getItem('destrip_groupName') || 'Detektif';
   const score = localStorage.getItem('destrip_score') || '0';
+
+  useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   if (!mission) return null;
 

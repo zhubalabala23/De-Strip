@@ -23,6 +23,12 @@ export default function ActiveMissionPage() {
   const [currentScore, setCurrentScore] = useState(0);
 
   useEffect(() => {
+    const role = localStorage.getItem('destrip_role');
+    if (!role) {
+      navigate('/');
+      return;
+    }
+
     if (!mission) {
       navigate('/missions');
       return;
@@ -92,18 +98,20 @@ export default function ActiveMissionPage() {
   const challenges = Array.from({ length: mission.questions.length }, (_, i) => i);
 
   return (
-    <div className="min-h-screen md:h-screen w-full relative overflow-y-auto md:overflow-hidden bg-[#e6d0a7] font-sans flex flex-col items-center">
+    <div className="min-h-screen w-full relative overflow-y-auto bg-[#e6d0a7] font-sans flex flex-col items-center pb-24">
       
       {/* Background System */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 flex items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
-        <div className="absolute bottom-0 left-0 right-0 mx-auto w-[98%] md:w-[90%] max-w-[1100px] flex justify-center items-end">
-          <img src={museumImg} alt="Museum" className="w-full h-auto opacity-70" />
-        </div>
-        <div className="absolute top-0 bottom-0 left-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
-        </div>
-        <div className="absolute top-0 bottom-0 right-0 w-[28%] md:w-[32%] max-w-[450px]">
-          <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
+        <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 mx-auto w-[90%] max-w-[1100px] flex justify-center items-end">
+            <img src={museumImg} alt="Museum" className="w-full h-auto opacity-70" />
+          </div>
+          <div className="absolute top-0 bottom-0 left-0 w-[32%] max-w-[450px]">
+            <img src={leftTreeImg} alt="Left Tree" className="w-full h-full" />
+          </div>
+          <div className="absolute top-0 bottom-0 right-0 w-[32%] max-w-[450px]">
+            <img src={rightTreeImg} alt="Right Tree" className="w-full h-full" />
+          </div>
         </div>
 
         {/* CHARACTER & FAN */}
@@ -164,7 +172,7 @@ export default function ActiveMissionPage() {
 
               <div className="flex flex-col items-end gap-1 flex-shrink-0 absolute right-2 top-1 md:relative md:right-auto md:top-auto">
                 <button 
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate('/landing')}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
                   <Home size={28} className="text-[#FFD84D]" strokeWidth={3} />
@@ -185,7 +193,7 @@ export default function ActiveMissionPage() {
                   <ArrowLeft size={28} className="text-[#FFD84D]" strokeWidth={4} />
                 </button>
                 <button 
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate('/landing')}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
                   <Home size={28} className="text-[#FFD84D]" strokeWidth={3} />
@@ -289,7 +297,7 @@ export default function ActiveMissionPage() {
               
               {/* Teks Literasi */}
               <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                <p className="text-sm md:text-base font-bold text-black text-justify leading-relaxed">
+                <p className="text-base md:text-lg lg:text-xl font-bold text-black text-justify leading-relaxed">
                   {currentQ.text}
                 </p>
               </div>
@@ -303,7 +311,7 @@ export default function ActiveMissionPage() {
                 <div className="md:hidden text-center font-tropika text-[#FF7F27] text-lg mb-1" style={{ WebkitTextStroke: '0.5px #8C5300' }}>
                   TANTANGAN {selectedChallenge + 1}
                 </div>
-                <p className="text-center font-black text-sm md:text-lg text-black">
+                <p className="text-center font-black text-base md:text-xl lg:text-2xl text-black">
                   Berdasarkan teks deskripsi di samping, pilihlah jawaban yang paling tepat!
                 </p>
               </div>
@@ -330,7 +338,7 @@ export default function ActiveMissionPage() {
                       onClick={() => handleAnswer(idx)}
                       className={`w-full text-left p-3 md:p-4 rounded-[20px] md:rounded-[30px] border-[4px] md:border-[6px] border-black font-black transition-all flex flex-col justify-center min-h-[80px] md:min-h-[100px] shadow-lg active:scale-95 active:shadow-sm ${btnClass}`}
                     >
-                      <span className="text-xs md:text-sm leading-tight">
+                      <span className="text-sm md:text-base lg:text-lg xl:text-xl leading-snug">
                         <span className="underline mr-1">{String.fromCharCode(65 + idx)}.</span> {opt}
                       </span>
                     </button>
