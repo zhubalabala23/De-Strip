@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import { AudioProvider } from './context/AudioContext.jsx'
 
 // Import critical images for preloading
 import backgroundPath from './assets/images/background.webp';
@@ -50,7 +51,9 @@ preloadImages();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AudioProvider>
+        <App />
+      </AudioProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )

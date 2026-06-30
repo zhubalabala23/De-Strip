@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ClipboardList, Menu, X, LogOut } from 'lucide-react';
+import { ClipboardList, Menu, X, LogOut, Volume, Volume1, Volume2, VolumeX } from 'lucide-react';
+import { useAudio } from '../context/AudioContext';
 
 // Core assets
 import museumImg from '../assets/images/museum.webp';
@@ -29,13 +30,22 @@ import lightParkImg from '../assets/images/light_park.webp';
 export default function LandingPage() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showVolumePopup, setShowVolumePopup] = useState(false);
   const role = localStorage.getItem('destrip_role');
+  const { volume, setVolume, toggleMute } = useAudio();
 
   useEffect(() => {
     if (!role) {
       navigate('/');
     }
   }, [role, navigate]);
+
+  const getVolumeIcon = () => {
+    if (volume === 0) return <VolumeX size={20} className="text-white" />;
+    if (volume < 0.3) return <Volume size={20} className="text-white" />;
+    if (volume < 0.7) return <Volume1 size={20} className="text-white" />;
+    return <Volume2 size={20} className="text-white" />;
+  };
 
   const menuItems = [
     { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: petunjukIcon },
@@ -83,6 +93,104 @@ export default function LandingPage() {
       >
         {menuOpen ? <X size={28} strokeWidth={3} /> : <Menu size={28} strokeWidth={3} />}
       </button>
+
+      {/* Tombol Volume Trigger (Mobile Only) */}
+      <button 
+        onClick={() => setShowVolumePopup(!showVolumePopup)}
+        className="absolute top-4 right-[72px] z-[100] w-12 h-12 flex md:hidden items-center justify-center bg-[#4A2E1B] text-[#FFD84D] hover:bg-[#3d2516] rounded-full shadow-lg border-4 border-[#FFD84D] active:scale-95 transition-all cursor-pointer"
+        title="Pengaturan Volume"
+      >
+        {getVolumeIcon()}
+      </button>
+      
+      {/* Tombol Volume Backsound (YouTube Style - Desktop Only) */}
+      <div className="absolute top-4 right-4 z-[100] hidden md:flex items-center gap-2 bg-[#1c2834]/80 backdrop-blur-md px-3 py-2 rounded-full border border-white/15 shadow-2xl transition-all duration-300">
+        <span className="text-white/90 text-[10px] md:text-xs font-black uppercase tracking-wider select-none border-r border-white/20 pr-2 pl-1">Volume</span>
+        <button 
+          onClick={toggleMute}
+          className="text-white hover:text-yellow-300 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
+          title={volume === 0 ? "Buka Suara" : "Senyap"}
+        >
+          {getVolumeIcon()}
+        </button>
+        <input 
+          type="range"
+          min="0"
+          max="1"
+          step="0.05"
+          value={volume}
+          onChange={(e) => setVolume(parseFloat(e.target.value))}
+          className="volume-slider w-16 md:w-20 cursor-pointer"
+          style={{
+            background: `linear-gradient(to right, white ${volume * 100}%, rgba(255, 255, 255, 0.2) ${volume * 100}%)`
+          }}
+          title={`Volume: ${Math.round(volume * 100)}%`}
+        />
+      </div>
+
+      {/* Volume Pop-up Dialog (Mobile Only) */}
+      <AnimatePresence>
+        {showVolumePopup && (
+          <>
+            {/* Backdrop to dismiss popup */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowVolumePopup(false)}
+              className="fixed inset-0 bg-black/40 z-[95] md:hidden"
+            />
+
+            {/* Volume Pop-up Panel */}
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ type: "spring", duration: 0.3 }}
+              className="fixed top-20 right-4 z-[100] md:hidden bg-[#1c2834]/95 backdrop-blur-md p-4 rounded-3xl border-2 border-[#FFD84D] shadow-2xl flex flex-col items-center gap-4 w-64"
+            >
+              {/* Header */}
+              <div className="flex justify-between items-center w-full border-b border-white/10 pb-2">
+                <span className="font-tropika text-[#FFD84D] text-sm tracking-wider uppercase">Pengaturan Musik</span>
+                <button 
+                  onClick={() => setShowVolumePopup(false)}
+                  className="text-white/60 hover:text-white"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Controls */}
+              <div className="flex items-center gap-3 bg-black/30 w-full px-3 py-2.5 rounded-2xl border border-white/5 justify-center">
+                <button 
+                  onClick={toggleMute}
+                  className="text-white hover:text-yellow-300 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center"
+                  title={volume === 0 ? "Buka Suara" : "Senyap"}
+                >
+                  {getVolumeIcon()}
+                </button>
+                <input 
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value={volume}
+                  onChange={(e) => setVolume(parseFloat(e.target.value))}
+                  className="volume-slider w-28 cursor-pointer"
+                  style={{
+                    background: `linear-gradient(to right, white ${volume * 100}%, rgba(255, 255, 255, 0.2) ${volume * 100}%)`
+                  }}
+                  title={`Volume: ${Math.round(volume * 100)}%`}
+                />
+              </div>
+              
+              <div className="text-white/70 text-xs font-bold">
+                Volume Musik: <span className="text-[#FFD84D] font-black">{Math.round(volume * 100)}%</span>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
       
 
       {/* Unified Background Wrapper to preserve desktop proportions and crop on mobile */}
@@ -353,10 +461,43 @@ export default function LandingPage() {
         )}
       </AnimatePresence>
 
-      {/* CSS untuk bentuk panah */}
+      {/* CSS untuk bentuk panah & Slider Volume Youtube */}
       <style dangerouslySetInnerHTML={{__html: `
         .clip-path-arrow {
           clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 18% 100%, 0% 50%);
+        }
+        .volume-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          height: 3px;
+          border-radius: 9999px;
+          outline: none;
+          transition: background 0.1s ease;
+        }
+        .volume-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #ffffff;
+          cursor: pointer;
+          transition: transform 0.1s ease;
+        }
+        .volume-slider::-webkit-slider-thumb:hover {
+          transform: scale(1.25);
+        }
+        .volume-slider::-moz-range-thumb {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #ffffff;
+          cursor: pointer;
+          border: none;
+          transition: transform 0.1s ease;
+        }
+        .volume-slider::-moz-range-thumb:hover {
+          transform: scale(1.25);
         }
       `}} />
     </div>
