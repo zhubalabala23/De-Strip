@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
+import AudioToggleButton from '../components/AudioToggleButton';
 import museumImg from '../assets/images/museum.webp';
 import leftTreeImg from '../assets/images/left_tree.webp';
 import rightTreeImg from '../assets/images/right_tree.webp';
@@ -93,6 +94,11 @@ export default function PetunjukPage() {
               PETUNJUK BELAJAR
             </motion.h1>
           </motion.div>
+
+          {/* Tombol Suara */}
+          <div className="absolute right-0 top-0 md:top-2 z-20">
+            <AudioToggleButton variant="icon" size="md" />
+          </div>
         </div>
 
         {/* Box Teks Petunjuk */}

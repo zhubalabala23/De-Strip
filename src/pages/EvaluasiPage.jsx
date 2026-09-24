@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, XCircle, ArrowLeft, Home, Star, Award, ShieldCheck, Users } from 'lucide-react';
+import AudioToggleButton from '../components/AudioToggleButton';
 import { saveRecap } from '../firebase';
 
 import museumImg from '../assets/images/museum.webp';
@@ -351,12 +352,16 @@ export default function EvaluasiPage() {
             </h1>
           </motion.div>
 
-          <button 
-            onClick={() => navigate('/landing')}
-            className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0"
-          >
-            <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />
-          </button>
+          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+            <AudioToggleButton variant="icon" size="md" />
+            <button 
+              onClick={() => navigate('/landing')}
+              className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0"
+              title="Home"
+            >
+              <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />
+            </button>
+          </div>
         </div>
 
         {/* Progress Bar */}

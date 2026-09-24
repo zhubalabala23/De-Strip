@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
 import { PlayCircle, CheckCircle2, XCircle, ArrowLeft, Home, Star } from 'lucide-react';
+import AudioToggleButton from '../components/AudioToggleButton';
 import { missions } from '../data';
 
 import museumImg from '../assets/images/museum.webp';
@@ -21,6 +22,7 @@ export default function ActiveMissionPage() {
   const [feedback, setFeedback] = useState(null);
   const [completedChallenges, setCompletedChallenges] = useState([]);
   const [currentScore, setCurrentScore] = useState(0);
+  const [showQrModal, setShowQrModal] = useState(false);
 
   useEffect(() => {
     const role = localStorage.getItem('destrip_role');
@@ -45,6 +47,7 @@ export default function ActiveMissionPage() {
     setSelectedChallenge(null);
     setSelectedAnswer(null);
     setFeedback(null);
+    setShowQrModal(false);
   };
 
   useEffect(() => {
@@ -63,6 +66,7 @@ export default function ActiveMissionPage() {
     setSelectedChallenge(idx);
     setSelectedAnswer(null);
     setFeedback(null);
+    setShowQrModal(false);
   };
 
   const handleAnswer = (idx) => {
@@ -171,12 +175,15 @@ export default function ActiveMissionPage() {
               </motion.div>
 
               <div className="flex flex-col items-end gap-1 flex-shrink-0 absolute right-2 top-1 md:relative md:right-auto md:top-auto">
-                <button 
-                  onClick={() => navigate('/landing')}
-                  className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
-                >
-                  <Home size={28} className="text-[#FFD84D]" strokeWidth={3} />
-                </button>
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <AudioToggleButton variant="icon" size="sm" />
+                  <button 
+                    onClick={() => navigate('/landing')}
+                    className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
+                  >
+                    <Home size={28} className="text-[#FFD84D]" strokeWidth={3} />
+                  </button>
+                </div>
                 <div className="bg-white/95 backdrop-blur px-2 py-1 md:px-3 md:py-1.5 rounded-xl shadow-lg border-2 md:border-4 border-[#FFD84D] flex items-center gap-1 font-black text-[#FF7F27] text-xs md:text-sm lg:text-base">
                   <Star size={16} fill="currentColor" /> {currentScore} Poin
                 </div>
@@ -185,7 +192,7 @@ export default function ActiveMissionPage() {
           ) : (
             /* Header Saat Mengerjakan Soal */
             <>
-              <div className="flex gap-2 md:gap-4 flex-shrink-0 z-10 absolute left-2 top-1 md:relative md:left-auto md:top-auto">
+              <div className="flex gap-1.5 md:gap-3 items-center flex-shrink-0 z-10 absolute left-2 top-1 md:relative md:left-auto md:top-auto">
                 <button 
                   onClick={handleBackToMenu}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
@@ -198,6 +205,7 @@ export default function ActiveMissionPage() {
                 >
                   <Home size={28} className="text-[#FFD84D]" strokeWidth={3} />
                 </button>
+                <AudioToggleButton variant="icon" size="sm" />
               </div>
 
               <motion.div 
@@ -282,16 +290,30 @@ export default function ActiveMissionPage() {
                 
                 {/* QR Code Section */}
                 <div className="w-[34%] flex flex-col items-center justify-center gap-2 mt-1">
-                  <div className="bg-white p-2 rounded-2xl border-[4px] border-black shadow-sm">
-                    {currentQ.qrLink ? (
+                  <div 
+                    onClick={() => setShowQrModal(true)}
+                    className="bg-white p-1.5 md:p-2 rounded-2xl border-[4px] border-black shadow-sm flex items-center justify-center cursor-pointer hover:scale-105 hover:shadow-md transition-all group"
+                    title="Klik untuk memperbesar QR Code atau membuka video"
+                  >
+                    {currentQ.qrImage ? (
+                      <img 
+                        src={currentQ.qrImage} 
+                        alt="QR Code Soal" 
+                        className="w-[85px] h-[85px] md:w-[95px] md:h-[95px] object-contain rounded-lg" 
+                      />
+                    ) : currentQ.qrLink ? (
                       <QRCodeSVG value={currentQ.qrLink} size={90} className="w-full h-auto max-w-[90px]" />
                     ) : (
-                      <div className="w-[90px] h-[90px] bg-gray-200 flex items-center justify-center text-xs text-center font-bold">No QR</div>
+                      <div className="w-[85px] h-[85px] bg-gray-200 flex items-center justify-center text-xs text-center font-bold">No QR</div>
                     )}
                   </div>
-                  <div className="bg-black text-white px-3 py-1 md:px-5 md:py-1.5 rounded-full text-[10px] md:text-sm font-bold flex items-center justify-center gap-2 w-max whitespace-nowrap">
+                  <button
+                    type="button"
+                    onClick={() => setShowQrModal(true)}
+                    className="bg-black hover:bg-gray-800 text-white px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold flex items-center justify-center gap-1.5 w-max whitespace-nowrap transition-transform active:scale-95 shadow-md cursor-pointer"
+                  >
                     📱 Scan Me
-                  </div>
+                  </button>
                 </div>
               </div>
               
@@ -399,6 +421,60 @@ export default function ActiveMissionPage() {
               >
                 LANJUT KE REFLEKSI
               </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* QR Code Modal for Easy Phone Scanning & Direct Link */}
+      <AnimatePresence>
+        {showQrModal && currentQ && (
+          <div className="fixed inset-0 z-[250] flex items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              className="bg-white rounded-3xl p-6 md:p-8 max-w-sm md:max-w-md w-full shadow-2xl border-[6px] border-black flex flex-col items-center text-center relative"
+            >
+              <button
+                type="button"
+                onClick={() => setShowQrModal(false)}
+                className="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-800 w-10 h-10 rounded-full flex items-center justify-center font-black text-xl border-2 border-black transition-transform active:scale-95 shadow-sm"
+                title="Tutup"
+              >
+                ✕
+              </button>
+
+              <div className="text-2xl font-black font-tropika text-[#FF7F27] mb-1" style={{ WebkitTextStroke: '0.5px #8C5300' }}>
+                KODE QR VIDEO MISI
+              </div>
+              <p className="text-xs md:text-sm font-bold text-gray-600 mb-4 px-2">
+                Arahkan kamera atau aplikasi pemindai QR HP ke kode ini untuk langsung menonton video!
+              </p>
+
+              <div className="bg-white p-3 md:p-4 rounded-2xl border-[4px] border-black shadow-inner mb-5 flex items-center justify-center">
+                {currentQ.qrImage ? (
+                  <img
+                    src={currentQ.qrImage}
+                    alt="QR Code Video"
+                    className="w-56 h-56 md:w-64 md:h-64 object-contain"
+                  />
+                ) : currentQ.qrLink ? (
+                  <QRCodeSVG value={currentQ.qrLink} size={240} className="w-full h-auto max-w-[240px]" />
+                ) : null}
+              </div>
+
+              {currentQ.qrLink && (
+                <a
+                  href={currentQ.qrLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-[#ED1C24] hover:bg-[#c4141b] text-white font-black py-3 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95 text-sm md:text-base border-2 border-black"
+                >
+                  <PlayCircle size={22} />
+                  <span>Buka Video Langsung di YouTube</span>
+                </a>
+              )}
             </motion.div>
           </div>
         )}

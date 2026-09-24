@@ -8,6 +8,16 @@ export const AudioProvider = ({ children }) => {
   const audioRef = useRef(null);
   const location = useLocation();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isAudioOn, setIsAudioOnState] = useState(() => {
+    const saved = localStorage.getItem('destrip_music_enabled');
+    return saved !== null ? saved === 'true' : true; // Default to true (ON)
+  });
+  const isAudioOnRef = useRef(isAudioOn);
+
+  useEffect(() => {
+    isAudioOnRef.current = isAudioOn;
+  }, [isAudioOn]);
+
   const [volume, setVolumeState] = useState(() => {
     const saved = localStorage.getItem('destrip_audio_volume');
     return saved !== null ? parseFloat(saved) : 0.5; // Default to 50% volume
@@ -19,11 +29,11 @@ export const AudioProvider = ({ children }) => {
 
   const prevPathnameRef = useRef(location.pathname);
 
-  // Automatically pause/play based on routing
+  // Automatically pause/play based on routing & audio ON/OFF state
   useEffect(() => {
     if (!audioRef.current) return;
     const isMutedPage = location.pathname === '/' || location.pathname === '/teacher-recap';
-    if (isMutedPage) {
+    if (isMutedPage || !isAudioOn) {
       audioRef.current.pause();
     } else {
       // If transitioning from Login Page ('/') to Landing Page ('/landing'), reset audio to 0:00
@@ -35,20 +45,22 @@ export const AudioProvider = ({ children }) => {
       });
     }
     prevPathnameRef.current = location.pathname;
-  }, [location.pathname]);
+  }, [location.pathname, isAudioOn]);
 
   useEffect(() => {
     // Create the global audio instance
     const audio = new Audio(backsoundUrl);
     audio.loop = false; // We use custom looping logic at 0:55
-    audio.volume = volume;
+    audio.volume = isAudioOn ? volume : 0;
     audioRef.current = audio;
 
     // Timeupdate listener to handle custom loop at 0:55 (55 seconds)
     const handleTimeUpdate = () => {
       if (audio.currentTime >= 55) {
         audio.currentTime = 0;
-        audio.play().catch(err => console.log("Failed to loop play:", err));
+        if (isAudioOnRef.current) {
+          audio.play().catch(err => console.log("Failed to loop play:", err));
+        }
       }
     };
 
@@ -59,10 +71,10 @@ export const AudioProvider = ({ children }) => {
     audio.addEventListener('play', handlePlay);
     audio.addEventListener('pause', handlePause);
 
-    // Try playing immediately if not on muted page
+    // Try playing immediately if not on muted page and audio is ON
     const startPlay = () => {
       const isMutedPage = window.location.pathname === '/' || window.location.pathname === '/teacher-recap';
-      if (isMutedPage) return;
+      if (isMutedPage || !isAudioOnRef.current) return;
 
       audio.play()
         .then(() => {
@@ -78,7 +90,7 @@ export const AudioProvider = ({ children }) => {
     // Fallback interaction listeners to start playing on first user click/tap/keypress
     const handleInteraction = () => {
       const isMutedPage = window.location.pathname === '/' || window.location.pathname === '/teacher-recap';
-      if (isMutedPage) return; // Do not play if interacting on muted page
+      if (isMutedPage || !isAudioOnRef.current) return; // Do not play if interacting on muted page or music is OFF
 
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current.play()
@@ -137,12 +149,34 @@ export const AudioProvider = ({ children }) => {
     }
   };
 
-  const toggleMute = () => {
-    if (volume > 0) {
-      setVolume(0);
+  const toggleMusic = () => {
+    if (isAudioOn) {
+      // Turn OFF
+      setIsAudioOnState(false);
+      isAudioOnRef.current = false;
+      localStorage.setItem('destrip_music_enabled', 'false');
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
     } else {
-      setVolume(prevVolume > 0 ? prevVolume : 0.5);
+      // Turn ON
+      setIsAudioOnState(true);
+      isAudioOnRef.current = true;
+      localStorage.setItem('destrip_music_enabled', 'true');
+      const targetVol = volume > 0 ? volume : (prevVolume > 0 ? prevVolume : 0.5);
+      setVolume(targetVol);
+      if (audioRef.current) {
+        audioRef.current.volume = targetVol;
+        const isMutedPage = location.pathname === '/' || location.pathname === '/teacher-recap';
+        if (!isMutedPage) {
+          audioRef.current.play().catch(e => console.log("Play on toggleMusic failed:", e));
+        }
+      }
     }
+  };
+
+  const toggleMute = () => {
+    toggleMusic();
   };
 
   const setMaxVolume = () => {
@@ -154,7 +188,7 @@ export const AudioProvider = ({ children }) => {
   };
 
   return (
-    <AudioContext.Provider value={{ volume, isPlaying, setVolume, play, pause, toggleMute, setMaxVolume, setMinVolume }}>
+    <AudioContext.Provider value={{ volume, isPlaying, isAudioOn, setVolume, play, pause, toggleMute, toggleMusic, setMaxVolume, setMinVolume }}>
       {children}
     </AudioContext.Provider>
   );

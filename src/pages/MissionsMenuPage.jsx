@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, RotateCcw, Home } from 'lucide-react';
+import AudioToggleButton from '../components/AudioToggleButton';
 
 import museumImg from '../assets/images/museum.webp';
 import leftTreeImg from '../assets/images/left_tree.webp';
@@ -102,8 +103,9 @@ export default function MissionsMenuPage() {
             </motion.h1>
           </motion.div>
 
-          {/* Kelompok Tombol Kanan (Reset & Home) */}
-          <div className="absolute right-0 top-0 md:top-2 flex gap-2 md:gap-3 z-20">
+          {/* Kelompok Tombol Kanan (Audio, Reset & Home) */}
+          <div className="absolute right-0 top-0 md:top-2 flex items-center gap-2 md:gap-3 z-20">
+            <AudioToggleButton variant="icon" size="md" />
             <button 
               onClick={handleResetMission}
               className="bg-[#ED1C24] hover:bg-[#c9181e] transition-colors h-12 md:h-16 px-4 md:px-6 rounded-full flex items-center justify-center gap-2 shadow-lg border-4 border-[#C1272D] active:scale-95 cursor-pointer"

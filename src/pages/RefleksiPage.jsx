@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Save, CheckCircle2, ArrowLeft, Home } from 'lucide-react';
+import AudioToggleButton from '../components/AudioToggleButton';
 
 import museumImg from '../assets/images/museum.webp';
 import leftTreeImg from '../assets/images/left_tree.webp';
@@ -110,12 +111,16 @@ export default function RefleksiPage() {
             </motion.h1>
           </motion.div>
 
-          <button 
-            onClick={() => navigate('/landing')}
-            className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0 opacity-0 pointer-events-none"
-          >
-            <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />
-          </button>
+          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+            <AudioToggleButton variant="icon" size="md" />
+            <button 
+              onClick={() => navigate('/landing')}
+              className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
+              title="Home"
+            >
+              <Home size={32} className="text-[#FFD84D]" strokeWidth={3} />
+            </button>
+          </div>
         </div>
 
         <motion.div 

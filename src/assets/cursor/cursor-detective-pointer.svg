@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Outer Glow / Drop Shadow -->
+  <g opacity="0.45">
+    <ellipse cx="12" cy="13" rx="9.5" ry="9.5" fill="#F68026"/>
+    <path d="M17 18 L27 28 C28 29 28 30.5 27 31.5 C26 32.5 24.5 32.5 23.5 31.5 L13.5 21.5 Z" fill="#000000"/>
+  </g>
+
+  <!-- Handle (Wooden Detective Grip with Gold Accents) -->
+  <path d="M15.5 15.5 L26 26 C27 27 27 28.5 26 29.5 C25 30.5 23.5 30.5 22.5 29.5 L12 19 Z" fill="#2E180B"/>
+  <path d="M16 16.5 L25 25.5 C25.6 26.1 25.6 27.1 25 27.7 C24.4 28.3 23.4 28.3 22.8 27.7 L13.8 18.7 Z" fill="#A0522D"/>
+  <!-- Gold Rings on Handle -->
+  <line x1="17" y1="16.5" x2="15.5" y2="18" stroke="#FFE066" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="20" y1="19.5" x2="18.5" y2="21" stroke="#FFE066" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="24" cy="27" r="1.4" fill="#FFD84D"/>
+
+  <!-- Glowing Pointer / Sparkle at (2, 2) -->
+  <path d="M0 2 L4 2 L2 0 L2 4 Z" fill="#FFD84D"/>
+  <path d="M1 1 L8 2.5 L5 5.5 L2.5 8 Z" fill="#2E180B"/>
+  <path d="M2 2 L7 3.2 L4.5 5.5 L3.2 7 Z" fill="#FFF275"/>
+
+  <!-- Lens Outer Rim (Comic Outline) -->
+  <circle cx="11.5" cy="11.5" r="8.5" fill="#2E180B"/>
+  <!-- Bright Glowing Gold Frame -->
+  <circle cx="11.5" cy="11.5" r="7.4" fill="#FFD84D"/>
+  <!-- Orange Inner Ring -->
+  <circle cx="11.5" cy="11.5" r="5.8" fill="#F68026"/>
+  <!-- Inner Dark Rim -->
+  <circle cx="11.5" cy="11.5" r="4.6" fill="#2E180B"/>
+  
+  <!-- Active Illuminated Glass Lens -->
+  <circle cx="11.5" cy="11.5" r="4" fill="#FFF9C4" fill-opacity="0.85"/>
+  <!-- Sparkle in Lens -->
+  <path d="M11.5 9 L12 11 L14 11.5 L12 12 L11.5 14 L11 12 L9 11.5 L11 11 Z" fill="#FF7F27"/>
+  <!-- Glass Reflection Arc -->
+  <path d="M9 11 A3 3 0 0 1 12 8" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -4,11 +4,25 @@ import lingkunganSoal3 from './assets/images/image_5soal/lingkungan/soal3.webp';
 import lingkunganSoal4 from './assets/images/image_5soal/lingkungan/soal4.webp';
 import lingkunganSoal5 from './assets/images/image_5soal/lingkungan/soal5.webp';
 
+// QR Code Images - Lingkungan
+import qrLingkungan1 from './assets/QR/lingkungan/soal1/qrcode_398204701_44fc92117a65799a91c5e73ae20963e6.png';
+import qrLingkungan2 from './assets/QR/lingkungan/soal2/qrcode_398186344_c05ed46a130022a20119617f1dd45715.png';
+import qrLingkungan3 from './assets/QR/lingkungan/soal3/qrcode_398211643_adfa6e1d82effc4d11fd960e741ba51b.png';
+import qrLingkungan4 from './assets/QR/lingkungan/soal4/qrcode_398221657_dae850a265fd4fcb3f897411124f3a22.png';
+import qrLingkungan5 from './assets/QR/lingkungan/soal5/qrcode_398230879_f98c237eb2f60bc052e38374843db2ec.png';
+
 import fenomenaSoal1 from './assets/images/image_5soal/fenomena_alam/soal1.webp';
 import fenomenaSoal2 from './assets/images/image_5soal/fenomena_alam/soal2.webp';
 import fenomenaSoal3 from './assets/images/image_5soal/fenomena_alam/soal3.webp';
 import fenomenaSoal4 from './assets/images/image_5soal/fenomena_alam/soal4.webp';
 import fenomenaSoal5 from './assets/images/image_5soal/fenomena_alam/soal5.webp';
+
+// QR Code Images - Fenomena Alam
+import qrFenomena1 from './assets/QR/fenomena_alam/soal1/qrcode_402370060_f87a0464f0934f0c11c5b8501d03c6be.png';
+import qrFenomena2 from './assets/QR/fenomena_alam/soal2/qrcode_402468772_00beb075e11a2528a44bca95d53f1ddc.png';
+import qrFenomena3 from './assets/QR/fenomena_alam/soal3/qrcode_402489133_1de670590c2548fbf0739061ddb61795.png';
+import qrFenomena4 from './assets/QR/fenomena_alam/soal4/qrcode_402518416_a80379b86cde7865426bd0a145726c38.png';
+import qrFenomena5 from './assets/QR/fenomena_alam/soal5/qrcode_402550264_d61bb4942094558404bbc895761eb51c.png';
 
 import floraFaunaSoal1 from './assets/images/image_5soal/flora_fauna/soal1.webp';
 import floraFaunaSoal2 from './assets/images/image_5soal/flora_fauna/soal2.webp';
@@ -16,11 +30,25 @@ import floraFaunaSoal3 from './assets/images/image_5soal/flora_fauna/soal3.webp'
 import floraFaunaSoal4 from './assets/images/image_5soal/flora_fauna/soal4.webp';
 import floraFaunaSoal5 from './assets/images/image_5soal/flora_fauna/soal5.webp';
 
+// QR Code Images - Flora & Fauna
+import qrFlora1 from './assets/QR/flora_fauna/soal1/qrcode_402872392_5acd458f637bb6c290d350f64ac71d7f.png';
+import qrFlora2 from './assets/QR/flora_fauna/soal2/qrcode_402872890_e57f959df4a670f6abe1f2c65179a994.png';
+import qrFlora3 from './assets/QR/flora_fauna/soal3/qrcode_403245808_bd3e398e3bb19086ccf347f31302b435.png';
+import qrFlora4 from './assets/QR/flora_fauna/soal4/qrcode_403294609_df0d997958e59f7883b3b8327f3aa5a1.png';
+import qrFlora5 from './assets/QR/flora_fauna/soal5/qrcode_403426117_08c661b67bad14335c42d8db4b86334f.png';
+
 import tokohSoal1 from './assets/images/image_5soal/tokoh/soal1.webp';
 import tokohSoal2 from './assets/images/image_5soal/tokoh/soal2.webp';
 import tokohSoal3 from './assets/images/image_5soal/tokoh/soal3.webp';
 import tokohSoal4 from './assets/images/image_5soal/tokoh/soal4.webp';
 import tokohSoal5 from './assets/images/image_5soal/tokoh/soal5.webp';
+
+// QR Code Images - Tokoh
+import qrTokoh1 from './assets/QR/tokoh/soal1/qrcode_403827205_6ce9d5da7dfa24dfec01ce46fc494516.png';
+import qrTokoh2 from './assets/QR/tokoh/soal2/qrcode_403874587_9ca984516fa602365b0d36782d72afd7.png';
+import qrTokoh3 from './assets/QR/tokoh/soal3/qrcode_404461897_e916500e165753b433a3ac087503569e.png';
+import qrTokoh4 from './assets/QR/tokoh/soal4/qrcode_404462329_bf37de9769f0bf0abaeef0a4077d393d.png';
+import qrTokoh5 from './assets/QR/tokoh/soal5/qrcode_404486578_eaa79ee9cdaf846c33a07f66f1ebec0c.png';
 
 export const missions = [
   {
@@ -41,7 +69,8 @@ export const missions = [
           "Karena taman hanya boleh dikunjungi pada malam hari"
         ],
         correctAnswer: 1,
-        qrLink: "https://www.youtube.com/watch?v=dyQRvHDUrqk"
+        qrImage: qrLingkungan1,
+        qrLink: "https://www.youtube.com/watch?feature=shared&v=WzGcNevS7Eg"
       },
       {
         id: "q2",
@@ -54,7 +83,8 @@ export const missions = [
           "Perpustakaan digunakan untuk bermain bola"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=Fj9nfkI2Wl0"
+        qrImage: qrLingkungan2,
+        qrLink: "https://www.youtube.com/watch?v=6nqKKJp-Jnw&feature=youtu.be"
       },
       {
         id: "q3",
@@ -67,7 +97,8 @@ export const missions = [
           "Menjadi tempat bermain saat hujan deras"
         ],
         correctAnswer: 1,
-        qrLink: "https://www.youtube.com/watch?v=JvlXbyhzsTU"
+        qrImage: qrLingkungan3,
+        qrLink: "https://www.youtube.com/watch?feature=shared&v=Ce4Tfj_8PrY"
       },
       {
         id: "q4",
@@ -80,7 +111,8 @@ export const missions = [
           "Tidak memiliki air dan pasir"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=pzwXpOW3FJs"
+        qrImage: qrLingkungan4,
+        qrLink: "https://www.youtube.com/watch?feature=shared&v=YEOZ7ad1UxM"
       },
       {
         id: "q5",
@@ -93,7 +125,8 @@ export const missions = [
           "Sunyi seperti perpustakaan"
         ],
         correctAnswer: 1,
-        qrLink: "https://www.youtube.com/watch?v=4ZfVSv1klxk"
+        qrImage: qrLingkungan5,
+        qrLink: "https://www.youtube.com/watch?feature=shared&v=4OCdgnqvWCc"
       }
     ]
   },
@@ -115,7 +148,8 @@ export const missions = [
           "Karena tubuhnya selalu berwarna hitam polos"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrFlora1,
+        qrLink: "https://www.youtube.com/watch?si=A_xXj4uvKQtc0cmc&v=9KENc3gb60c&feature=youtu.be"
       },
       {
         id: "q2",
@@ -128,7 +162,8 @@ export const missions = [
           "Selalu berwarna biru terang"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrFlora2,
+        qrLink: "https://www.youtube.com/watch?si=hGnHPvyLRjYkUimy&v=h10Phg3UuKg&feature=youtu.be"
       },
       {
         id: "q3",
@@ -141,7 +176,8 @@ export const missions = [
           "Telinga"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrFlora3,
+        qrLink: "https://www.youtube.com/watch?si=kvCnqrTaKXm_3HaM&v=FBO51lR2t4E&feature=youtu.be"
       },
       {
         id: "q4",
@@ -154,7 +190,8 @@ export const missions = [
           "Dalam gua yang gelap"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrFlora4,
+        qrLink: "https://www.youtube.com/watch?si=E1f_gX6fH4iFYG1X&v=zlqz9Aq5Pxk&feature=youtu.be"
       },
       {
         id: "q5",
@@ -167,7 +204,8 @@ export const missions = [
           "Mengubah harimau menjadi hewan jinak"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrFlora5,
+        qrLink: "https://www.youtube.com/watch?si=xcJ-OoV3VbKZyHEu&v=5FvNc5qpOUc&feature=youtu.be"
       }
     ]
   },
@@ -189,7 +227,8 @@ export const missions = [
           "Terletak di tengah laut"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=5W7i9gTKrzI"
+        qrImage: qrFenomena1,
+        qrLink: "https://www.youtube.com/watch?si=mUoUWRBuBTirkjvl&v=DxG1ZoMLOjo&feature=youtu.be"
       },
       {
         id: "q2",
@@ -202,7 +241,8 @@ export const missions = [
           "Tidak ada air hujan sama sekali"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=DTjHOV_qAqg"
+        qrImage: qrFenomena2,
+        qrLink: "https://www.youtube.com/watch?si=qVtS4Y0a4rYVX1ui&v=Lj40EavbKKs&feature=youtu.be"
       },
       {
         id: "q3",
@@ -215,7 +255,8 @@ export const missions = [
           "Sama seperti suara kendaraan di jalan raya"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=BuqITcuoG-U"
+        qrImage: qrFenomena3,
+        qrLink: "https://www.youtube.com/watch?si=c56nVKnS_LbxIfXS&v=c0P6dyMt0nE&feature=youtu.be"
       },
       {
         id: "q4",
@@ -228,7 +269,8 @@ export const missions = [
           "Tidak ada tumbuhan di sekitarnya"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=n3CT1W-XrbU"
+        qrImage: qrFenomena4,
+        qrLink: "https://www.youtube.com/watch?si=V_FtMWqk3x9-4tN8&v=Jj5JhwSkU8o&feature=youtu.be"
       },
       {
         id: "q5",
@@ -241,7 +283,8 @@ export const missions = [
           "Langit berubah menjadi sangat cerah tanpa awan"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=nUHiqovWev0"
+        qrImage: qrFenomena5,
+        qrLink: "https://www.youtube.com/watch?si=QBXUIlY0OAzNRTwV&v=BI_v4ewEYRQ&feature=youtu.be"
       }
     ]
   },
@@ -263,7 +306,8 @@ export const missions = [
           "Olahraga sepak bola"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrTokoh1,
+        qrLink: "https://www.youtube.com/watch?si=gGXX_s9q_Ezs5Vv-&v=Ke0wBpbtFZk&feature=youtu.be"
       },
       {
         id: "q2",
@@ -276,7 +320,8 @@ export const missions = [
           "Mendirikan pasar tradisional"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrTokoh2,
+        qrLink: "https://www.youtube.com/watch?si=E0gD2Xscu_7zFFus&v=DenXOnMtsh0&feature=youtu.be"
       },
       {
         id: "q3",
@@ -289,7 +334,8 @@ export const missions = [
           "Pendiri pasar tradisional"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrTokoh3,
+        qrLink: "https://www.youtube.com/watch?feature=shared&v=iXmTBZFv-rQ"
       },
       {
         id: "q4",
@@ -302,7 +348,8 @@ export const missions = [
           "Pelukis pemandangan alam"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrTokoh4,
+        qrLink: "https://www.youtube.com/watch?feature=shared&v=c7EYab-jSpE"
       },
       {
         id: "q5",
@@ -315,7 +362,8 @@ export const missions = [
           "Penemu bunga Rafflesia"
         ],
         correctAnswer: 0,
-        qrLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        qrImage: qrTokoh5,
+        qrLink: "https://www.youtube.com/watch?si=dUxkMmOJXulxn61n&v=SGWX9X5e7_M&feature=youtu.be"
       }
     ]
   },
