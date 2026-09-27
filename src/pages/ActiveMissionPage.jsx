@@ -16,7 +16,7 @@ export default function ActiveMissionPage() {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const mission = missions.find(m => m.id === categoryId);
-  
+
   const [selectedChallenge, setSelectedChallenge] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState(null);
@@ -37,7 +37,7 @@ export default function ActiveMissionPage() {
     }
     const score = parseInt(localStorage.getItem('destrip_score') || '0', 10);
     setCurrentScore(score);
-    
+
     const progressStr = localStorage.getItem('destrip_progress') || '{}';
     const progress = JSON.parse(progressStr);
     setCompletedChallenges(progress[mission.id] || []);
@@ -71,15 +71,15 @@ export default function ActiveMissionPage() {
 
   const handleAnswer = (idx) => {
     if (selectedAnswer !== null) return;
-    
+
     const currentQ = mission.questions[selectedChallenge];
     // Jika soal asli tidak ada (karena hanya 5 di data), kita anggap jawaban salah kecuali index 0 misalnya, 
     // Tapi karena ini dummy, kita anggap kalau soal ga ada, opsi pertama benar.
     const isCorrect = currentQ ? idx === currentQ.correctAnswer : idx === 0;
-    
+
     setSelectedAnswer(idx);
     setFeedback(isCorrect ? 'correct' : 'wrong');
-    
+
     const newScore = isCorrect ? currentScore + 20 : Math.max(0, currentScore - 10);
     setCurrentScore(newScore);
     localStorage.setItem('destrip_score', newScore.toString());
@@ -95,15 +95,15 @@ export default function ActiveMissionPage() {
     }
   };
 
-  const currentQ = selectedChallenge !== null && selectedChallenge < mission.questions.length 
-                   ? mission.questions[selectedChallenge] 
-                   : null;
+  const currentQ = selectedChallenge !== null && selectedChallenge < mission.questions.length
+    ? mission.questions[selectedChallenge]
+    : null;
 
   const challenges = Array.from({ length: mission.questions.length }, (_, i) => i);
 
   return (
     <div className="min-h-screen w-full relative overflow-y-auto bg-[#e6d0a7] font-sans flex flex-col items-center pb-24">
-      
+
       {/* Background System */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')]">
         <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none">
@@ -145,29 +145,29 @@ export default function ActiveMissionPage() {
       </div>
 
       <div className="relative z-20 w-full h-full flex flex-col items-center p-3 md:p-6">
-        
+
         {/* Header */}
         <div className="w-full flex flex-col md:flex-row items-center justify-between relative mb-2 md:mb-4 mt-1 z-50 px-2 md:px-8 min-h-[72px] md:min-h-0">
-          
+
           {selectedChallenge === null ? (
             /* Header Menu Tantangan */
             <>
-              <button 
+              <button
                 onClick={() => navigate('/missions')}
                 className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer flex-shrink-0 absolute left-2 top-1 md:relative md:left-auto md:top-auto"
               >
                 <ArrowLeft size={28} className="text-[#FFD84D]" strokeWidth={4} />
               </button>
 
-              <motion.div 
+              <motion.div
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 className="bg-[#6B4624] px-6 py-2 md:px-12 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl mx-auto mt-16 md:mt-0"
               >
-                <motion.h1 
+                <motion.h1
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
-                  className="font-tropika text-xl md:text-3xl lg:text-4xl font-black text-[#FFD84D] tracking-widest text-center uppercase drop-shadow-lg origin-center" 
+                  className="font-tropika text-xl md:text-3xl lg:text-4xl font-black text-[#FFD84D] tracking-widest text-center uppercase drop-shadow-lg origin-center"
                   style={{ WebkitTextStroke: '2px #4A2E1B' }}
                 >
                   {mission.title}
@@ -177,7 +177,7 @@ export default function ActiveMissionPage() {
               <div className="flex flex-col items-end gap-1 flex-shrink-0 absolute right-2 top-1 md:relative md:right-auto md:top-auto">
                 <div className="flex items-center gap-1.5 md:gap-2">
                   <AudioToggleButton variant="icon" size="sm" />
-                  <button 
+                  <button
                     onClick={() => navigate('/landing')}
                     className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                   >
@@ -193,13 +193,13 @@ export default function ActiveMissionPage() {
             /* Header Saat Mengerjakan Soal */
             <>
               <div className="flex gap-1.5 md:gap-3 items-center flex-shrink-0 z-10 absolute left-2 top-1 md:relative md:left-auto md:top-auto">
-                <button 
+                <button
                   onClick={handleBackToMenu}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
                   <ArrowLeft size={28} className="text-[#FFD84D]" strokeWidth={4} />
                 </button>
-                <button 
+                <button
                   onClick={() => navigate('/landing')}
                   className="bg-[#F68026] hover:bg-[#d96a1a] transition-colors w-10 h-10 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg border-4 border-[#F68026] active:scale-95 cursor-pointer"
                 >
@@ -208,15 +208,15 @@ export default function ActiveMissionPage() {
                 <AudioToggleButton variant="icon" size="sm" />
               </div>
 
-              <motion.div 
+              <motion.div
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 className="bg-[#6B4624] px-8 py-3 md:px-16 md:py-4 rounded-[40px] border-b-[6px] border-[#4A2E1B] shadow-2xl md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-0 hidden md:block"
               >
-                <motion.h1 
+                <motion.h1
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ repeat: Infinity, duration: 0.5, ease: "easeInOut" }}
-                  className="font-tropika text-xl md:text-3xl font-black text-[#FFD84D] tracking-widest text-center uppercase drop-shadow-lg origin-center" 
+                  className="font-tropika text-xl md:text-3xl font-black text-[#FFD84D] tracking-widest text-center uppercase drop-shadow-lg origin-center"
                   style={{ WebkitTextStroke: '2px #4A2E1B' }}
                 >
                   TANTANGAN {selectedChallenge + 1}
@@ -235,7 +235,7 @@ export default function ActiveMissionPage() {
         {selectedChallenge === null ? (
           /* MENU TANTANGAN 1-10 */
           <div className="flex-1 w-full flex flex-col justify-center items-end pb-4 md:pb-12 px-2 md:px-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               className="bg-white/95 backdrop-blur-sm rounded-[40px] shadow-2xl border-8 border-white p-6 md:p-10 w-full max-w-5xl lg:mr-16 relative z-20"
@@ -243,7 +243,7 @@ export default function ActiveMissionPage() {
               <div className="bg-[#FFD84D] text-[#FF3B30] font-bold text-2xl md:text-4xl text-center py-3 px-8 rounded-2xl mb-8 mx-auto w-max">
                 Ayo pilih tantanganya!
               </div>
-              
+
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 md:gap-6 justify-items-center">
                 {challenges.map((idx) => {
                   const isCompleted = completedChallenges.includes(idx);
@@ -255,8 +255,8 @@ export default function ActiveMissionPage() {
                       whileTap={!isCompleted ? { scale: 0.9 } : {}}
                       onClick={() => handleSelectChallenge(idx)}
                       className={`w-20 h-20 md:w-32 md:h-32 rounded-full shadow-lg border-[4px] md:border-[6px] flex flex-col items-center justify-center text-white transition-all relative overflow-hidden
-                        ${isCompleted 
-                          ? 'bg-green-500 border-green-300 cursor-not-allowed opacity-90' 
+                        ${isCompleted
+                          ? 'bg-green-500 border-green-300 cursor-not-allowed opacity-90'
                           : 'bg-[#FF7F27] border-[#FFD84D] cursor-pointer'
                         }`}
                     >
@@ -264,7 +264,7 @@ export default function ActiveMissionPage() {
                       <span className="text-2xl md:text-5xl font-black drop-shadow-md leading-none font-tropika">{idx + 1}</span>
                       {isCompleted && (
                         <div className="absolute inset-0 bg-black/20 flex items-center justify-center backdrop-blur-[1px]">
-                           <CheckCircle2 size={40} className="text-white drop-shadow-md" strokeWidth={3} />
+                          <CheckCircle2 size={40} className="text-white drop-shadow-md" strokeWidth={3} />
                         </div>
                       )}
                     </motion.button>
@@ -274,109 +274,114 @@ export default function ActiveMissionPage() {
             </motion.div>
           </div>
         ) : (
-          /* TAMPILAN SOAL - DUAL PANEL LAYOUT */
-          <motion.div 
-            initial={{ scale: 0.9, opacity: 0 }}
+          /* TAMPILAN SOAL - VERTICAL LAYOUT (SOAL DI ATAS, JAWABAN DI BAWAH) */
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-6xl mx-auto flex-1 flex flex-col md:flex-row gap-4 md:gap-8 p-2 md:p-6 relative z-20 items-stretch"
+            className="w-full max-w-5xl mx-auto flex-1 flex flex-col gap-3.5 md:gap-5 p-2 md:p-4 relative z-20"
           >
-            {/* Panel Kiri: Gambar, QR, dan Teks Literasi */}
-            <div className="w-full md:w-1/2 bg-white rounded-[40px] border-[6px] md:border-[8px] border-black p-4 md:p-6 shadow-2xl flex flex-col md:h-full">
-              <div className="flex flex-row justify-between items-start gap-4 mb-4">
-                {/* Gambar Objek */}
-                <div className="w-[62%] h-36 md:h-52 overflow-hidden flex items-center justify-center rounded-2xl border-[1px] border-black bg-gray-50 shadow-sm">
-                  <img src={currentQ.image || 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=400&q=80'} alt="Objek" className="w-full h-full object-cover" />
+            {/* 1. Panel Soal: Gambar Besar & QR di Kiri Bawah, Teks Deskripsi Full di Kanan */}
+            <div className="w-full bg-white rounded-[28px] md:rounded-[36px] border-[5px] md:border-[6px] border-black p-4 md:p-6 shadow-2xl flex flex-col md:flex-row items-center md:items-center gap-5 md:gap-8">
+              {/* Kolom Kiri: Gambar Objek Lebih Besar & QR Code di Kiri Bawah */}
+              <div className="w-full md:w-[44%] lg:w-[42%] flex flex-col items-center md:items-start gap-3 flex-shrink-0">
+                {/* Gambar Objek Lebih Besar */}
+                <div className="w-full h-44 sm:h-52 md:h-56 lg:h-64 overflow-hidden rounded-2xl border-[3px] border-black bg-gray-50 shadow-md">
+                  <img
+                    src={currentQ.image || 'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=400&q=80'}
+                    alt="Objek"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                
-                {/* QR Code Section */}
-                <div className="w-[34%] flex flex-col items-center justify-center gap-2 mt-1">
-                  <div 
+
+                {/* QR Code di Kiri Bawah */}
+                <div className="w-full flex flex-row items-center justify-start gap-3 pt-1">
+                  <div
                     onClick={() => setShowQrModal(true)}
-                    className="bg-white p-1.5 md:p-2 rounded-2xl border-[4px] border-black shadow-sm flex items-center justify-center cursor-pointer hover:scale-105 hover:shadow-md transition-all group"
+                    className="bg-white p-1.5 rounded-2xl border-[3px] border-black shadow-md flex items-center justify-center cursor-pointer hover:scale-105 hover:shadow-lg transition-all group flex-shrink-0"
                     title="Klik untuk memperbesar QR Code atau membuka video"
                   >
                     {currentQ.qrImage ? (
-                      <img 
-                        src={currentQ.qrImage} 
-                        alt="QR Code Soal" 
-                        className="w-[85px] h-[85px] md:w-[95px] md:h-[95px] object-contain rounded-lg" 
+                      <img
+                        src={currentQ.qrImage}
+                        alt="QR Code Soal"
+                        className="w-[64px] h-[64px] sm:w-[72px] sm:h-[72px] md:w-[80px] md:h-[80px] object-contain rounded-lg"
                       />
                     ) : currentQ.qrLink ? (
-                      <QRCodeSVG value={currentQ.qrLink} size={90} className="w-full h-auto max-w-[90px]" />
+                      <QRCodeSVG value={currentQ.qrLink} size={76} className="w-full h-auto max-w-[76px]" />
                     ) : (
-                      <div className="w-[85px] h-[85px] bg-gray-200 flex items-center justify-center text-xs text-center font-bold">No QR</div>
+                      <div className="w-[64px] h-[64px] bg-gray-200 flex items-center justify-center text-xs text-center font-bold">No QR</div>
                     )}
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowQrModal(true)}
-                    className="bg-black hover:bg-gray-800 text-white px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold flex items-center justify-center gap-1.5 w-max whitespace-nowrap transition-transform active:scale-95 shadow-md cursor-pointer"
-                  >
-                    📱 Scan Me
-                  </button>
+                  <div className="flex flex-col items-start gap-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowQrModal(true)}
+                      className="bg-black hover:bg-gray-800 text-white px-3.5 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-bold flex items-center justify-center gap-1.5 whitespace-nowrap transition-transform active:scale-95 shadow-md cursor-pointer"
+                    >
+                      📱 Scan Me
+                    </button>
+                    <span className="text-[11px] md:text-xs font-bold text-gray-500">Scan video materi</span>
+                  </div>
                 </div>
               </div>
-              
-              {/* Teks Literasi */}
-              <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                <p className="text-base md:text-lg lg:text-xl font-bold text-black text-justify leading-relaxed">
+
+              {/* Kolom Kanan: Teks Deskripsi Full di Kanan Tanpa Scroll */}
+              <div className="w-full md:flex-1 flex flex-col justify-center">
+                <p className="text-base sm:text-lg md:text-xl lg:text-[21px] font-bold text-black text-justify leading-relaxed whitespace-pre-line">
                   {currentQ.text}
                 </p>
               </div>
             </div>
 
-            {/* Panel Kanan: Pertanyaan & Opsi Jawaban */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center gap-4 md:gap-6">
-              
-              {/* Balon Pertanyaan */}
-              <div className="bg-white rounded-[30px] border-[6px] border-black p-4 md:p-6 shadow-xl">
-                <div className="md:hidden text-center font-tropika text-[#FF7F27] text-lg mb-1" style={{ WebkitTextStroke: '0.5px #8C5300' }}>
-                  TANTANGAN {selectedChallenge + 1}
-                </div>
-                <p className="text-center font-black text-base md:text-xl lg:text-2xl text-black">
-                  Berdasarkan teks deskripsi di samping, pilihlah jawaban yang paling tepat!
-                </p>
+            {/* 2. Balon Instruksi Soal (Kata 'di samping' diubah menjadi 'di atas') */}
+            <div className="w-full bg-white rounded-[22px] md:rounded-[28px] border-[4px] md:border-[5px] border-black p-3 md:p-4 shadow-xl">
+              <div className="md:hidden text-center font-tropika text-[#FF7F27] text-base mb-1" style={{ WebkitTextStroke: '0.5px #8C5300' }}>
+                TANTANGAN {selectedChallenge + 1}
               </div>
+              <p className="text-center font-black text-sm sm:text-base md:text-xl lg:text-2xl text-black">
+                Berdasarkan teks deskripsi di atas, pilihlah jawaban yang paling tepat!
+              </p>
+            </div>
 
-              {/* Opsi Jawaban Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                {currentQ.options.map((opt, idx) => {
-                  let btnClass = "bg-white hover:bg-gray-100";
-                  
-                  if (selectedAnswer !== null) {
-                    if (idx === currentQ.correctAnswer) {
-                      btnClass = "bg-[#39B54A] text-white border-[#39B54A] shadow-none"; 
-                    } else if (idx === selectedAnswer && idx !== currentQ.correctAnswer) {
-                      btnClass = "bg-[#ED1C24] text-white border-[#ED1C24] shadow-none"; 
-                    } else {
-                      btnClass = "bg-gray-200 text-gray-500 opacity-60"; 
-                    }
+            {/* 3. Opsi Jawaban (A, B, C, D di Bagian Bawah) */}
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-4">
+              {currentQ.options.map((opt, idx) => {
+                let btnClass = "bg-white hover:bg-[#FFF8E7] hover:border-[#F68026]";
+
+                if (selectedAnswer !== null) {
+                  if (idx === currentQ.correctAnswer) {
+                    btnClass = "bg-[#39B54A] text-white border-[#39B54A] shadow-none";
+                  } else if (idx === selectedAnswer && idx !== currentQ.correctAnswer) {
+                    btnClass = "bg-[#ED1C24] text-white border-[#ED1C24] shadow-none";
+                  } else {
+                    btnClass = "bg-gray-200 text-gray-500 opacity-60";
                   }
+                }
 
-                  return (
-                    <button
-                      key={idx}
-                      disabled={selectedAnswer !== null}
-                      onClick={() => handleAnswer(idx)}
-                      className={`w-full text-left p-3 md:p-4 rounded-[20px] md:rounded-[30px] border-[4px] md:border-[6px] border-black font-black transition-all flex flex-col justify-center min-h-[80px] md:min-h-[100px] shadow-lg active:scale-95 active:shadow-sm ${btnClass}`}
-                    >
-                      <span className="text-sm md:text-base lg:text-lg xl:text-xl leading-snug">
-                        <span className="underline mr-1">{String.fromCharCode(65 + idx)}.</span> {opt}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+                return (
+                  <button
+                    key={idx}
+                    disabled={selectedAnswer !== null}
+                    onClick={() => handleAnswer(idx)}
+                    className={`w-full text-left p-3 md:p-4 rounded-[18px] md:rounded-[24px] border-[3px] md:border-[5px] border-black font-black transition-all flex flex-col justify-center min-h-[60px] md:min-h-[72px] shadow-lg active:scale-95 active:shadow-sm cursor-pointer ${btnClass}`}
+                  >
+                    <span className="text-sm md:text-base lg:text-lg leading-snug">
+                      <span className="underline mr-1.5">{String.fromCharCode(65 + idx)}.</span> {opt}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </motion.div>
         )}
 
       </div>
 
+
       {/* Feedback & Next Button Overlay */}
       <AnimatePresence>
         {selectedAnswer !== null && (
-          <motion.div 
+          <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
@@ -390,7 +395,7 @@ export default function ActiveMissionPage() {
               <p className="text-white text-center font-bold text-lg drop-shadow-md">
                 {feedback === 'correct' ? 'Kerja bagus detektif! Lanjutkan pencarianmu.' : 'Tidak apa-apa, ayo coba lagi di tantangan berikutnya!'}
               </p>
-              <button 
+              <button
                 onClick={handleBackToMenu}
                 className="w-full bg-white text-gray-900 font-black py-4 rounded-2xl mt-2 hover:bg-gray-100 shadow-lg text-lg transition-transform active:scale-95 border-b-4 border-gray-300 active:border-b-0"
               >
@@ -405,7 +410,7 @@ export default function ActiveMissionPage() {
       <AnimatePresence>
         {selectedChallenge === null && completedChallenges.length === mission.questions.length && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border-4 border-[#39B54A] flex flex-col items-center text-center"
@@ -415,7 +420,7 @@ export default function ActiveMissionPage() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2 font-tropika tracking-wider">Misi Selesai!</h3>
               <p className="text-gray-600 mb-6 text-lg">Kalian telah menyelesaikan {mission.questions.length} tantangan. Sebelum melihat peringkat detektif kalian, yuk isi lembar refleksi dulu!</p>
-              <button 
+              <button
                 onClick={() => navigate('/refleksi')}
                 className="bg-[#39B54A] text-white font-bold py-4 px-8 rounded-2xl hover:bg-[#2e933c] transition-colors w-full shadow-xl border-b-4 border-[#228B22] active:translate-y-1 active:border-b-0 text-xl font-tropika tracking-widest"
               >
