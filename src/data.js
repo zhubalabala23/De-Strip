@@ -142,12 +142,12 @@ export const missions = [
         text: "Burung cenderawasih dikenal sebagai salah satu burung yang sangat indah. Burung ini memiliki bulu berwarna cerah dan bentuk ekor yang menarik. Saat bertengger di dahan pohon, bulunya tampak seperti hiasan alami. Keindahan bulunya membuat burung cenderawasih sering disebut sebagai burung surga.\n\nMengapa burung cenderawasih disebut burung yang indah?",
         image: floraFaunaSoal1,
         options: [
-          "Karena memiliki bulu berwarna cerah dan menarik",
           "Karena hidup di dalam air",
+          "Karena memiliki bulu berwarna cerah dan menarik",
           "Karena tidak memiliki sayap",
           "Karena tubuhnya selalu berwarna hitam polos"
         ],
-        correctAnswer: 0,
+        correctAnswer: 1,
         qrImage: qrFlora1,
         qrLink: "https://www.youtube.com/watch?si=A_xXj4uvKQtc0cmc&v=9KENc3gb60c&feature=youtu.be"
       },
@@ -156,12 +156,12 @@ export const missions = [
         text: "Bunga Rafflesia merupakan salah satu bunga yang unik. Ukurannya sangat besar dibandingkan bunga pada umumnya. Bunga ini tumbuh di lantai hutan dan tidak memiliki daun seperti tanaman biasa. Ketika mekar, bentuknya terlihat lebar dengan warna kemerahan. Karena ukurannya yang besar, bunga ini mudah menarik perhatian orang yang melihatnya.\n\nCiri khas bunga Rafflesia berdasarkan teks tersebut adalah ...",
         image: floraFaunaSoal2,
         options: [
-          "Memiliki ukuran yang sangat besar",
           "Tumbuh tinggi seperti pohon kelapa",
           "Memiliki banyak daun kecil",
-          "Selalu berwarna biru terang"
+          "Selalu berwarna biru terang",
+          "Memiliki ukuran yang sangat besar"
         ],
-        correctAnswer: 0,
+        correctAnswer: 3,
         qrImage: qrFlora2,
         qrLink: "https://www.youtube.com/watch?si=hGnHPvyLRjYkUimy&v=h10Phg3UuKg&feature=youtu.be"
       },
@@ -184,12 +184,12 @@ export const missions = [
         text: "Pohon kelapa banyak tumbuh di daerah pantai. Batangnya tinggi dan daunnya panjang menjuntai. Buah kelapa berbentuk bulat dan dapat dimanfaatkan air serta daging buahnya. Di daerah pesisir, pohon kelapa sering terlihat berjejer di dekat pasir pantai. Keberadaannya membuat suasana pantai tampak lebih teduh dan alami.\n\nBerdasarkan teks tersebut, pohon kelapa banyak tumbuh di daerah ...",
         image: floraFaunaSoal4,
         options: [
-          "Pantai",
           "Kutub bersalju",
           "Gurun pasir tanpa air",
+          "Pantai",
           "Dalam gua yang gelap"
         ],
-        correctAnswer: 0,
+        correctAnswer: 2,
         qrImage: qrFlora4,
         qrLink: "https://www.youtube.com/watch?si=E1f_gX6fH4iFYG1X&v=zlqz9Aq5Pxk&feature=youtu.be"
       },
@@ -198,12 +198,12 @@ export const missions = [
         text: "Harimau Sumatra memiliki tubuh kuat dan gerakan yang lincah. Tubuhnya ditutupi bulu berwarna oranye dengan belang hitam. Belang tersebut membantu harimau menyamar di antara pepohonan dan semak-semak saat berada di hutan. Dengan cara itu, harimau dapat bergerak lebih tenang ketika mencari mangsa.\n\nApa fungsi belang pada tubuh harimau Sumatra?",
         image: floraFaunaSoal5,
         options: [
-          "Membantu harimau menyamar di lingkungan hutan",
           "Membuat harimau dapat terbang",
+          "Membantu harimau menyamar di lingkungan hutan",
           "Membuat harimau hidup di dalam air",
           "Mengubah harimau menjadi hewan jinak"
         ],
-        correctAnswer: 0,
+        correctAnswer: 1,
         qrImage: qrFlora5,
         qrLink: "https://www.youtube.com/watch?si=xcJ-OoV3VbKZyHEu&v=5FvNc5qpOUc&feature=youtu.be"
       }
@@ -300,12 +300,12 @@ export const missions = [
         text: "B.J. Habibie dikenal sebagai tokoh Indonesia yang cerdas dan tekun. Ia memiliki ketertarikan besar dalam bidang teknologi, terutama teknologi pesawat terbang. Berkat kemampuannya, ia banyak memberikan sumbangan pemikiran dalam dunia penerbangan. Selain dikenal sebagai ilmuwan, B.J. Habibie juga pernah menjadi Presiden Republik Indonesia.\n\nBerdasarkan teks tersebut, bidang yang sangat berkaitan dengan B.J. Habibie adalah ...",
         image: tokohSoal1,
         options: [
-          "Teknologi penerbangan",
           "Seni tari tradisional",
+          "Teknologi penerbangan",
           "Pertanian padi",
           "Olahraga sepak bola"
         ],
-        correctAnswer: 0,
+        correctAnswer: 1,
         qrImage: qrTokoh1,
         qrLink: "https://www.youtube.com/watch?si=gGXX_s9q_Ezs5Vv-&v=Ke0wBpbtFZk&feature=youtu.be"
       },
@@ -314,12 +314,12 @@ export const missions = [
         text: "R.A. Kartini dikenal sebagai tokoh perempuan Indonesia yang memperjuangkan pendidikan. Ia ingin perempuan memiliki kesempatan untuk belajar dan mengembangkan diri. Semangat Kartini membuat banyak orang menyadari pentingnya pendidikan bagi semua, baik laki-laki maupun perempuan. Hingga sekarang, perjuangannya masih dikenang oleh masyarakat Indonesia.\n\nApa perjuangan utama R.A. Kartini berdasarkan teks tersebut?",
         image: tokohSoal2,
         options: [
-          "Memperjuangkan pendidikan bagi perempuan",
           "Membangun jembatan di banyak daerah",
           "Menjadi atlet olahraga internasional",
+          "Memperjuangkan pendidikan bagi perempuan",
           "Mendirikan pasar tradisional"
         ],
-        correctAnswer: 0,
+        correctAnswer: 2,
         qrImage: qrTokoh2,
         qrLink: "https://www.youtube.com/watch?si=E0gD2Xscu_7zFFus&v=DenXOnMtsh0&feature=youtu.be"
       },
@@ -328,12 +328,12 @@ export const missions = [
         text: "Ki Hajar Dewantara adalah tokoh yang sangat berjasa dalam dunia pendidikan Indonesia. Ia percaya bahwa pendidikan penting untuk membentuk manusia yang cerdas dan berbudi pekerti. Karena perjuangannya, Ki Hajar Dewantara dikenal sebagai Bapak Pendidikan Nasional. Namanya selalu diingat ketika masyarakat membicarakan perkembangan pendidikan di Indonesia.\n\nBerdasarkan teks tersebut, Ki Hajar Dewantara dikenal sebagai ...",
         image: tokohSoal3,
         options: [
-          "Bapak Pendidikan Nasional",
           "Bapak Teknologi Penerbangan",
           "Tokoh olahraga nasional",
-          "Pendiri pasar tradisional"
+          "Pendiri pasar tradisional",
+          "Bapak Pendidikan Nasional"
         ],
-        correctAnswer: 0,
+        correctAnswer: 3,
         qrImage: qrTokoh3,
         qrLink: "https://www.youtube.com/watch?feature=shared&v=iXmTBZFv-rQ"
       },
@@ -356,12 +356,12 @@ export const missions = [
         text: "Ir. Soekarno adalah tokoh penting dalam sejarah Indonesia. Ia dikenal sebagai salah satu tokoh yang berperan dalam memperjuangkan kemerdekaan Indonesia. Soekarno juga menjadi Presiden pertama Republik Indonesia. Saat berpidato, ia dikenal memiliki suara yang lantang dan mampu membangkitkan semangat rakyat.\n\nBerdasarkan teks tersebut, Ir. Soekarno merupakan ...",
         image: tokohSoal5,
         options: [
-          "Presiden pertama Republik Indonesia",
           "Presiden ketiga Republik Indonesia",
+          "Presiden pertama Republik Indonesia",
           "Tokoh teknologi penerbangan",
           "Penemu bunga Rafflesia"
         ],
-        correctAnswer: 0,
+        correctAnswer: 1,
         qrImage: qrTokoh5,
         qrLink: "https://www.youtube.com/watch?si=dUxkMmOJXulxn61n&v=SGWX9X5e7_M&feature=youtu.be"
       }
