@@ -9,6 +9,7 @@ import RefleksiPage from './pages/RefleksiPage';
 import EvaluasiPage from './pages/EvaluasiPage';
 import PetunjukPage from './pages/PetunjukPage';
 import TeacherRecapPage from './pages/TeacherRecapPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/refleksi" element={<RefleksiPage />} />
       <Route path="/evaluasi" element={<EvaluasiPage />} />
       <Route path="/teacher-recap" element={<TeacherRecapPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );
 }

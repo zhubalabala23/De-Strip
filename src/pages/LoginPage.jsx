@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { KeyRound, ShieldAlert } from 'lucide-react';
+import StudentProfileBadge from '../components/StudentProfileBadge';
 
 // Core assets
 import leftTreeImg from '../assets/images/left_tree.webp';
@@ -44,6 +45,11 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-[#e6d0a7] font-sans flex flex-col items-center justify-center">
       
+      {/* Profil Mahasiswa / Developer Credit Badge (Kanan Atas / Top-Right) */}
+      <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-40">
+        <StudentProfileBadge />
+      </div>
+
       {/* Background System */}
       <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[1200px] lg:w-full lg:left-0 lg:translate-x-0 pointer-events-none z-10 overflow-hidden">
         {/* Main Background Sky/Grass */}

@@ -19,6 +19,7 @@ import quizIcon from '../assets/images/icon_menu/quiz.webp';
 import refleksiIcon from '../assets/images/icon_menu/refleksi.webp';
 import evaluasiIcon from '../assets/images/icon_menu/evaluasi.webp';
 import petunjukIcon from '../assets/images/icon_menu/petunjuk.webp';
+import profilIcon from '../assets/images/icon_menu/profil.webp';
 
 // New layer assets
 import secondLeftTreeImg from '../assets/images/second_left-tree.webp';
@@ -39,6 +40,7 @@ export default function LandingPage() {
   }, [role, navigate]);
 
   const menuItems = [
+    { title: "PROFIL PENGEMBANG", path: "/profile", icon: profilIcon },
     { title: "PETUNJUK BELAJAR", path: "/petunjuk", icon: petunjukIcon },
     { title: "KUIZ PEMAHAMAN", path: "/group-setup", icon: quizIcon },
     { title: "EVALUASI AKHIR", path: "/evaluasi", icon: evaluasiIcon },
@@ -279,7 +281,7 @@ export default function LandingPage() {
         animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
         style={{ zIndex: 45 }}
-        className="absolute right-0 top-[20%] sm:top-[22%] md:top-[25%] lg:top-[28%] hidden md:flex flex-col items-end gap-3 sm:gap-4 md:gap-5 w-max pr-0"
+        className="absolute right-0 top-[15%] sm:top-[17%] md:top-[19%] lg:top-[21%] hidden md:flex flex-col items-end gap-2.5 sm:gap-3 md:gap-3.5 lg:gap-4 w-max pr-0"
       >
         {menuItems.map((item, index) => (
           <motion.button 
